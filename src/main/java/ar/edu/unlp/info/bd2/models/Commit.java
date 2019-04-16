@@ -1,18 +1,25 @@
 package ar.edu.unlp.info.bd2.models;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Commit {
 
-    public Long id;
-    public String description;
-    public String hash;
-    public User user;
-    public List<File> files;
-    public Branch master;
+    private Long id; //tengo que buscar la anotacion correspodiente.
+    private String message;
+    private String hash;
+    private User author;
+    private List<File> files;
+    private Branch master;
 
     public Commit() {
+    }
+
+    public void createCommit (String description, String hash, User author, List<File> files, Branch branch){
+        this.setMessage(description);
+        this.setHash(hash);
+        this.setAuthor(author);
+        this.setFiles(files);
+        this.setMaster(branch);
     }
 
     public Long getId() {
@@ -20,11 +27,11 @@ public class Commit {
     }
 
     public User getAuthor() {
-        return user;
+        return author;
     }
 
     public void setAuthor(User user) {
-        this.user = user;
+        this.author = user;
     }
 
     public List<File> getFiles() {
@@ -45,11 +52,11 @@ public class Commit {
 
 
     public String getMessage() {
-        return description;
+        return message;
     }
 
     public void setMessage(String description) {
-        this.description = description;
+        this.message = description;
     }
 
     public String getHash() {

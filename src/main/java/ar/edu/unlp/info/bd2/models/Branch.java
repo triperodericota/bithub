@@ -2,8 +2,8 @@ package ar.edu.unlp.info.bd2.models;
 
 public class Branch {
 
-    public Long id;
-    public String name;
+    private Long id;
+    private String name;
 
     public Branch() {
     }
