@@ -64,7 +64,7 @@ public interface BithubService {
    * @param name nombre del archivo, incluyendo su path
    * @param content contenido textual del archivo
    * @return el archivo creado con los parámetros provistos
-   */x
+   */
   File createFile(String content, String name);
 
   /**
