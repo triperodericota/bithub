@@ -1,7 +1,6 @@
 package ar.edu.unlp.info.bd2.services;
 
 import ar.edu.unlp.info.bd2.models.*;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -14,7 +13,7 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public User createUser(String email, String name) {
-        return null;
+        return new User(email, name);
     }
 
     @Override
@@ -86,4 +85,5 @@ public class BithubServiceImpl implements BithubService {
     public Optional<Branch> getBranchByName(String branchName) {
         return Optional.empty();
     }
+
 }

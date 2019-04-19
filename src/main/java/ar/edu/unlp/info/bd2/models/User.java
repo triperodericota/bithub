@@ -5,10 +5,13 @@ import javax.persistence.*;
 @Entity
 public class User {
 
+    @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String email;
+    @Column
     private String name;
 
     public User() {

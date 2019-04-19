@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4871a029-cf21-4b67-82e4-23d91b64e876" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/BithubRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/BithubServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Branch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Commit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/FileReview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/FileReview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Tag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Tag.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/BithubService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/BithubService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/BithubRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/BithubRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/BithubServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/BithubServiceImpl.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,14 +21,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/BithubServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="120">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#468#469#0" expanded="true" />
+                <element signature="e#495#496#0" expanded="true" />
+                <element signature="e#567#568#0" expanded="true" />
+                <element signature="e#606#607#0" expanded="true" />
+                <element signature="e#667#668#0" expanded="true" />
+                <element signature="e#694#695#0" expanded="true" />
+                <element signature="e#1061#1062#0" expanded="true" />
+                <element signature="e#1100#1101#0" expanded="true" />
+                <element signature="e#1173#1174#0" expanded="true" />
+                <element signature="e#1200#1201#0" expanded="true" />
+                <element signature="e#1271#1272#0" expanded="true" />
+                <element signature="e#1310#1311#0" expanded="true" />
+                <element signature="e#1384#1385#0" expanded="true" />
+                <element signature="e#1411#1412#0" expanded="true" />
+                <element signature="e#1640#1641#0" expanded="true" />
+                <element signature="e#1679#1680#0" expanded="true" />
+                <element signature="e#1754#1755#0" expanded="true" />
+                <element signature="e#1781#1782#0" expanded="true" />
+                <element signature="e#1848#1849#0" expanded="true" />
+                <element signature="e#1875#1876#0" expanded="true" />
+                <element signature="e#2093#2094#0" expanded="true" />
+                <element signature="e#2132#2133#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Branch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/BithubRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
             </state>
           </provider>
         </entry>
@@ -97,8 +134,9 @@
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Review.java" />
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Tag.java" />
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repository/BithubRepository.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/BithubServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/BithubService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/BithubServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/BithubRepository.java" />
       </list>
     </option>
   </component>
@@ -150,6 +188,12 @@
               <item name="bd2-2019" type="58d84e3e:PackageViewProjectNode" />
               <item name="bd2-2019" type="616d4139:PackageViewModuleNode" />
               <item name="ar.edu.unlp.info.bd2" type="1f31426a:PackageElementNode" />
+              <item name="repositories" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="bd2-2019" type="58d84e3e:PackageViewProjectNode" />
+              <item name="bd2-2019" type="616d4139:PackageViewModuleNode" />
+              <item name="ar.edu.unlp.info.bd2" type="1f31426a:PackageElementNode" />
               <item name="services" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
@@ -191,6 +235,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1299" height="743" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19792499" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -235,16 +280,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#676#677#0" expanded="true" />
             <element signature="e#705#706#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Branch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -303,17 +338,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/BithubRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#109#110#0" expanded="true" />
-            <element signature="e#130#131#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/config/AppConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -348,13 +372,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/BithubServiceImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/models/Branch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="360">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/BithubServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#468#469#0" expanded="true" />
+            <element signature="e#495#496#0" expanded="true" />
+            <element signature="e#567#568#0" expanded="true" />
+            <element signature="e#606#607#0" expanded="true" />
+            <element signature="e#667#668#0" expanded="true" />
+            <element signature="e#694#695#0" expanded="true" />
+            <element signature="e#1061#1062#0" expanded="true" />
+            <element signature="e#1100#1101#0" expanded="true" />
+            <element signature="e#1173#1174#0" expanded="true" />
+            <element signature="e#1200#1201#0" expanded="true" />
+            <element signature="e#1271#1272#0" expanded="true" />
+            <element signature="e#1310#1311#0" expanded="true" />
+            <element signature="e#1384#1385#0" expanded="true" />
+            <element signature="e#1411#1412#0" expanded="true" />
+            <element signature="e#1640#1641#0" expanded="true" />
+            <element signature="e#1679#1680#0" expanded="true" />
+            <element signature="e#1754#1755#0" expanded="true" />
+            <element signature="e#1781#1782#0" expanded="true" />
+            <element signature="e#1848#1849#0" expanded="true" />
+            <element signature="e#1875#1876#0" expanded="true" />
+            <element signature="e#2093#2094#0" expanded="true" />
+            <element signature="e#2132#2133#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/BithubRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
