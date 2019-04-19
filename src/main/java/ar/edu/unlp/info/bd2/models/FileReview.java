@@ -1,12 +1,22 @@
 package ar.edu.unlp.info.bd2.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class FileReview {
 
+    @Id
+    @GeneratedValue
     private Long id;
     private Review review;
     private File file;
     private Integer line;
     private String comment;
+
+    public FileReview() {
+    }
 
     public Long getId() {
         return id;

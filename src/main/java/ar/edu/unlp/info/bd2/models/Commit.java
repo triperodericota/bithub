@@ -1,10 +1,16 @@
 package ar.edu.unlp.info.bd2.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.List;
 
+@Entity
 public class Commit {
 
-    private Long id; //tengo que buscar la anotacion correspodiente.
+    @Id
+    @GeneratedValue
+    private Long id;
     private String message;
     private String hash;
     private User author;
