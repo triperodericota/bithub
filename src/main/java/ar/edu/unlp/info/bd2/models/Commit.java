@@ -5,11 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.List;
 
-@Entity
+//@Entity
 public class Commit {
 
-    @Id
-    @GeneratedValue
+  //  @Id
+    //@GeneratedValue
     private Long id;
     private String message;
     private String hash;

@@ -2,7 +2,7 @@ package ar.edu.unlp.info.bd2.repositories;
 
 public class BithubRepository {
 
-    public String createRepository(){
+    public BithubRepository createRepository(){
         return null;
     }
 

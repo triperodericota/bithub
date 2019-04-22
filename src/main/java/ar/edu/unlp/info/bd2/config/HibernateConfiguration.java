@@ -21,7 +21,7 @@ public class HibernateConfiguration {
     LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
     sessionFactory.setDataSource(dataSource());
     sessionFactory.setPackagesToScan(
-            new String[] {"ar.edu.unlp.info.bd2.model"});
+            new String[] {"ar.edu.unlp.info.bd2.models"});
     sessionFactory.setHibernateProperties(hibernateProperties());
 
     return sessionFactory;
@@ -40,8 +40,7 @@ public class HibernateConfiguration {
 
   @Bean
   public PlatformTransactionManager hibernateTransactionManager() {
-    HibernateTransactionManager transactionManager
-            = new HibernateTransactionManager();
+    HibernateTransactionManager transactionManager = new HibernateTransactionManager();
     transactionManager.setSessionFactory(sessionFactory().getObject());
     return transactionManager;
   }

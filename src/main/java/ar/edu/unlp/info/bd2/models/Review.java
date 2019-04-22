@@ -4,11 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+//@Entity
 public class Review {
 
-    @Id
-    @GeneratedValue
+  //  @Id
+    //@GeneratedValue
     private Long id;
     private User author;
     private Branch branch;

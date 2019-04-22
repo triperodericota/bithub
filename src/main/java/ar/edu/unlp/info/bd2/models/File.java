@@ -2,11 +2,11 @@ package ar.edu.unlp.info.bd2.models;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 public class File {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+  //  @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String content;

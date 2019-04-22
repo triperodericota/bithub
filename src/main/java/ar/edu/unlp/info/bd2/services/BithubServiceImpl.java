@@ -1,11 +1,19 @@
 package ar.edu.unlp.info.bd2.services;
 
+import ar.edu.unlp.info.bd2.config.HibernateConfiguration;
 import ar.edu.unlp.info.bd2.models.*;
+import ar.edu.unlp.info.bd2.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.PlatformTransactionManager;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 public class BithubServiceImpl implements BithubService {
+
+    @Autowired
+    HibernateConfiguration sesion;
 
     public BithubServiceImpl(BithubRepository repository ) {
 
@@ -13,7 +21,9 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public User createUser(String email, String name) {
-        return new User(email, name);
+        User nuevo=new User(email, name);
+        sesion.sessionFactory().getObject().openSession().save(nuevo);
+        return nuevo;
     }
 
     @Override

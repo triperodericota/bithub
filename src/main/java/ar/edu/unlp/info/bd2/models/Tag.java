@@ -4,11 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity
+//@Entity
 public class Tag {
 
-    @Id
-    @GeneratedValue
+  //  @Id
+    //@GeneratedValue
     private Long id;
     private String commitHash;
     private String name;
