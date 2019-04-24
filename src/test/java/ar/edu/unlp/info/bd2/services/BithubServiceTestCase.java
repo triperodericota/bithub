@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {AppConfig.class, HibernateConfiguration.class}, loader = AnnotationConfigContextLoader.class)
-@Transactional
+@Transactional //¿ESTO APLICA EN TODA LA CLASE O HAY QUE USAR EL METODO DE HIBERNET CONFIGURATION?
 @Rollback(true)
 public class BithubServiceTestCase {
 
@@ -47,8 +47,8 @@ public class BithubServiceTestCase {
     assertEquals("Initial commit", commit.getMessage());
     assertEquals("ab4f19z", commit.getHash());
     assertNotNull(commit.getId());
-/*
-    Optional<Commit> commitFromDb = this.service.getCommitByHash("ab4f19z");
+
+    /*Optional<Commit> commitFromDb = this.service.getCommitByHash("ab4f19z");
     assertTrue(commitFromDb.isPresent());
     assertEquals(user.getId(), commitFromDb.get().getAuthor().getId());
     assertEquals(2, commitFromDb.get().getFiles().size());
@@ -197,8 +197,9 @@ public class BithubServiceTestCase {
     assertTrue(users.stream().anyMatch(u -> u.getEmail().equals("user1@bithub.bd2.info.unlp.edu.ar")));
     assertTrue(users.stream().anyMatch(u -> u.getEmail().equals("user2@bithub.bd2.info.unlp.edu.ar")));
     assertFalse(users.stream().anyMatch(u -> u.getEmail().equals("user3@bithub.bd2.info.unlp.edu.ar")));
+  */
   }
-*/
+
   }
-}
+
 

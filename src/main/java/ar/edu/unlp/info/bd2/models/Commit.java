@@ -25,7 +25,7 @@ public class Commit {
     private List<File> files;
 
     @ManyToOne
-    @JoinColumn (name="IdBranch")
+    @JoinColumn(name="IdBranch")
     private Branch master;
 
     public Commit() { }

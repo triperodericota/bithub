@@ -14,8 +14,11 @@ public class BithubServiceImpl implements BithubService {
     @Autowired
     LocalSessionFactoryBean sesion;
 
-    public BithubServiceImpl(BithubRepository repository ) {
+    BithubRepository repository; //COMO INYECTO LA VARIABLE ??
 
+    @Autowired
+    public BithubServiceImpl(BithubRepository repository ) {
+        this.repository=repository;
     }
 
     @Override
@@ -33,7 +36,7 @@ public class BithubServiceImpl implements BithubService {
     @Override
     public Branch createBranch(String name) {
         Branch newBranch= new Branch(name);
-        sesion.getObject().openSession().save(newBranch);
+        sesion.getObject().openSession().save(newBranch); //ESTO FUNCIONA, ¿PERO SE PUEDE HACER MAS ELEGANTE? PORQUE ME DICE QUE PUEDE SER NULL?
         return newBranch;
 
     }
