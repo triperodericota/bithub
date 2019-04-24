@@ -1,19 +1,30 @@
 package ar.edu.unlp.info.bd2.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
-//@Entity
+@Entity
 public class Branch {
 
-    //@Id
-    //@GeneratedValue
+    @Column
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String name;
 
-    public Branch() {
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "IdBranch")
+    List<Commit> commits;
+
+    public Branch() { }
+
+
+    public Branch(String name){
+        this.setName(name);
     }
+
 
     public Long getId() {
         return id;
@@ -23,6 +34,7 @@ public class Branch {
     public String getName() {
         return name;
     }
+
 
     public void setName(String name) {
         this.name = name;

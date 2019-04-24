@@ -6,18 +6,13 @@ import ar.edu.unlp.info.bd2.models.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,18 +27,15 @@ public class BithubServiceTestCase {
 
   @Test
   public void testCreateBranchAndCommit() {
-/*    Branch master = this.service.createBranch("master");
-    assertNotNull(master.getId());
+    Branch master = this.service.createBranch("master");
+    assertNotNull(master.getId());  //PREGUNTAR PORQUE ESTE METODO FUNCIONA SOLO CUANDO GUARDO LA TUPLA CREADA!
     assertEquals("master", master.getName());
-*/
-
 
     User user = this.service.createUser("user@bithub.bd2.info.unlp.edu.ar", "User");
     assertNotNull(user.getId());
     assertEquals("user@bithub.bd2.info.unlp.edu.ar", user.getEmail());
     assertEquals("User", user.getName());
 
-/*
     File file1 = this.service.createFile("System.out.println(\"Hello world\");", "Main.java");
     assertEquals("Main.java", file1.getFilename());
     assertEquals("System.out.println(\"Hello world\");", file1.getContent());
@@ -55,7 +47,7 @@ public class BithubServiceTestCase {
     assertEquals("Initial commit", commit.getMessage());
     assertEquals("ab4f19z", commit.getHash());
     assertNotNull(commit.getId());
-
+/*
     Optional<Commit> commitFromDb = this.service.getCommitByHash("ab4f19z");
     assertTrue(commitFromDb.isPresent());
     assertEquals(user.getId(), commitFromDb.get().getAuthor().getId());

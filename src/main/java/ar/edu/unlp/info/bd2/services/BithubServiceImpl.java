@@ -1,10 +1,9 @@
 package ar.edu.unlp.info.bd2.services;
 
-import ar.edu.unlp.info.bd2.config.HibernateConfiguration;
 import ar.edu.unlp.info.bd2.models.*;
 import ar.edu.unlp.info.bd2.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +12,7 @@ import java.util.Optional;
 public class BithubServiceImpl implements BithubService {
 
     @Autowired
-    HibernateConfiguration sesion;
+    LocalSessionFactoryBean sesion;
 
     public BithubServiceImpl(BithubRepository repository ) {
 
@@ -21,9 +20,9 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public User createUser(String email, String name) {
-        User nuevo=new User(email, name);
-        sesion.sessionFactory().getObject().openSession().save(nuevo);
-        return nuevo;
+        User newUser=new User(email, name);
+        sesion.getObject().openSession().save(newUser);
+        return newUser;
     }
 
     @Override
@@ -33,12 +32,17 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public Branch createBranch(String name) {
-        return null;
+        Branch newBranch= new Branch(name);
+        sesion.getObject().openSession().save(newBranch);
+        return newBranch;
+
     }
 
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> files, Branch branch) {
-        return null;
+        Commit newCommit= new Commit(description,hash,author,files,branch);
+        sesion.getObject().openSession().save(newCommit);
+        return newCommit;
     }
 
     @Override
@@ -53,7 +57,9 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public File createFile(String content, String name) {
-        return null;
+        File newFile= new File(content, name);
+        sesion.getObject().openSession().save(newFile);
+        return newFile;
     }
 
     @Override
