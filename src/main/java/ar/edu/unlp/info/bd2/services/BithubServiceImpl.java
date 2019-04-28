@@ -1,22 +1,22 @@
 package ar.edu.unlp.info.bd2.services;
 
 import ar.edu.unlp.info.bd2.models.*;
-import ar.edu.unlp.info.bd2.repositories.*;
+import ar.edu.unlp.info.bd2.repositories.BithubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Service
 public class BithubServiceImpl implements BithubService {
 
     @Autowired
-    LocalSessionFactoryBean sesion;
+    BithubRepository repository;
 
-    BithubRepository repository; //COMO INYECTO LA VARIABLE ??
 
-    @Autowired
     public BithubServiceImpl(BithubRepository repository ) {
         this.repository=repository;
     }
@@ -24,7 +24,7 @@ public class BithubServiceImpl implements BithubService {
     @Override
     public User createUser(String email, String name) {
         User newUser=new User(email, name);
-        sesion.getObject().openSession().save(newUser);
+        repository.createUser(newUser);
         return newUser;
     }
 
@@ -36,7 +36,7 @@ public class BithubServiceImpl implements BithubService {
     @Override
     public Branch createBranch(String name) {
         Branch newBranch= new Branch(name);
-        sesion.getObject().openSession().save(newBranch); //ESTO FUNCIONA, ¿PERO SE PUEDE HACER MAS ELEGANTE? PORQUE ME DICE QUE PUEDE SER NULL?
+        repository.createBranch(newBranch);
         return newBranch;
 
     }
@@ -44,7 +44,7 @@ public class BithubServiceImpl implements BithubService {
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> files, Branch branch) {
         Commit newCommit= new Commit(description,hash,author,files,branch);
-        sesion.getObject().openSession().save(newCommit);
+        repository.createCommit(newCommit);
         return newCommit;
     }
 
@@ -61,7 +61,7 @@ public class BithubServiceImpl implements BithubService {
     @Override
     public File createFile(String content, String name) {
         File newFile= new File(content, name);
-        sesion.getObject().openSession().save(newFile);
+        repository.createFile(newFile);
         return newFile;
     }
 
