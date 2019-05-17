@@ -26,17 +26,18 @@ public class Commit {
 
     @ManyToOne
     @JoinColumn(name="IdBranch")
-    private Branch master;
+    private Branch branch;
+
 
     public Commit() { }
 
 
-    public Commit (String description, String hash, User author, List<File> files, Branch branch){
+    public Commit (String description, String hash, User author, List<File> files, Branch aBranch){
         this.setMessage(description);
         this.setHash(hash);
         this.setAuthor(author);
         this.setFiles(files);
-        this.setMaster(branch);
+        this.setBranch(aBranch);
     }
 
 
@@ -64,16 +65,13 @@ public class Commit {
         this.files = array;
     }
 
-
-    public Branch getMaster() {
-        return master;
+    public Branch getBranch() {
+        return branch;
     }
 
-
-    public void setMaster(Branch master) {
-        this.master = master;
+    public void setBranch(Branch branch) {
+        this.branch = branch;
     }
-
 
     public String getMessage() {
         return message;

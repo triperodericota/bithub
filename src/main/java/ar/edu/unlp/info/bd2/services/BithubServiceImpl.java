@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class BithubServiceImpl implements BithubService {
 
     @Autowired
@@ -30,7 +31,7 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public Optional<User> getUserByEmail(String email) {
-        return Optional.empty();
+        return repository.getUserByEmail(email);
     }
 
     @Override
@@ -55,7 +56,7 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public Optional<Commit> getCommitByHash(String commitHash) {
-        return Optional.empty();
+        return repository.getCommitByHash(commitHash);
     }
 
     @Override

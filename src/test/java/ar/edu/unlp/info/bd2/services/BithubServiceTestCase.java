@@ -13,12 +13,13 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {AppConfig.class, HibernateConfiguration.class}, loader = AnnotationConfigContextLoader.class)
-@Transactional //¿ESTO APLICA EN TODA LA CLASE O HAY QUE USAR EL METODO DE HIBERNET CONFIGURATION?
+@Transactional
 @Rollback(true)
 public class BithubServiceTestCase {
 
@@ -48,11 +49,11 @@ public class BithubServiceTestCase {
     assertEquals("ab4f19z", commit.getHash());
     assertNotNull(commit.getId());
 
-    /*Optional<Commit> commitFromDb = this.service.getCommitByHash("ab4f19z");
+    Optional<Commit> commitFromDb = this.service.getCommitByHash("ab4f19z");
     assertTrue(commitFromDb.isPresent());
     assertEquals(user.getId(), commitFromDb.get().getAuthor().getId());
     assertEquals(2, commitFromDb.get().getFiles().size());
-
+/*
     assertEquals("System.out.println(\"Hello world\");", commitFromDb.get().getFiles().get(0).getContent());
     assertEquals("Main.java", commitFromDb.get().getFiles().get(0).getFilename());
 
