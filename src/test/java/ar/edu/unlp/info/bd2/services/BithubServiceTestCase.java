@@ -59,12 +59,12 @@ public class BithubServiceTestCase {
 
     assertEquals("print(\"Hello world\")", commitFromDb.get().getFiles().get(1).getContent());
     assertEquals("Main.py", commitFromDb.get().getFiles().get(1).getFilename());
-
+*/
     Optional<Branch> branchFromDb = this.service.getBranchByName("master");
     assertTrue(branchFromDb.isPresent());
     assertEquals(1, branchFromDb.get().getCommits().size());
   }
-
+/*
   @Test
   public void testCreateTag() throws BithubException {
     Branch master = this.service.createBranch("master");
@@ -198,8 +198,8 @@ public class BithubServiceTestCase {
     assertTrue(users.stream().anyMatch(u -> u.getEmail().equals("user1@bithub.bd2.info.unlp.edu.ar")));
     assertTrue(users.stream().anyMatch(u -> u.getEmail().equals("user2@bithub.bd2.info.unlp.edu.ar")));
     assertFalse(users.stream().anyMatch(u -> u.getEmail().equals("user3@bithub.bd2.info.unlp.edu.ar")));
-  */
-  }
+
+  }*/
 
   }
 

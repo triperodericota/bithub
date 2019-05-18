@@ -103,7 +103,7 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public Optional<Branch> getBranchByName(String branchName) {
-        return Optional.empty();
+        return repository.getBranchByName(branchName);
     }
 
 }

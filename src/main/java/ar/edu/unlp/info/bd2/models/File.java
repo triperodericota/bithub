@@ -15,39 +15,39 @@ public class File {
 
     @Column
     private String content;
-
+/*
+    @ManyToOne
+    private Commit commit;
+*/
     public File() { }
-
 
     public File(String content, String name) {
         this.setFilename(name);
         this.setContent(content);
     }
 
-
     public Long getId() {
         return id;
     }
-
 
     public String getFilename() {
         return name;
     }
 
-
     public void setFilename(String name) {
         this.name = name;
     }
-
 
     public String getContent() {
         return content;
     }
 
-
     public void setContent(String content) {
         this.content = content;
     }
+/*
+    public void setCommit(Commit commit) { this.commit = commit; }
 
-
+    public Commit getCommit() { return this.commit; }
+*/
 }

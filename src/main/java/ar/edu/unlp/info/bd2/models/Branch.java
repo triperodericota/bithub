@@ -20,23 +20,21 @@ public class Branch {
 
     public Branch() { }
 
-
     public Branch(String name){
         this.setName(name);
     }
-
 
     public Long getId() {
         return id;
     }
 
-
     public String getName() {
         return name;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
+
+    public List<Commit> getCommits() { return this.commits; }
 }

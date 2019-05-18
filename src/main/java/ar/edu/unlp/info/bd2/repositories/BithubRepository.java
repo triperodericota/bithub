@@ -30,13 +30,10 @@ public class BithubRepository {
     public void createUser(User aNewUser){ this.getSession().save(aNewUser); }
 
     public Optional<User> getUserByEmail(String email){
-/*        Query query = this.getSession()
-                .createQuery("FROM  User u " + " WHERE u.email like :email");
-
-        query.setParameter("email", email);
-        Optional<User> returned = Optional.of(query.getSingleResult());
-        return returned;*/
-        return Optional.empty();
+        User u = (User) this.getSession().createQuery("select u " + "from User u " + "where u.email like :email").
+                setParameter("email", email).getSingleResult();
+        Optional<User> toReturn = Optional.of(u);
+        return toReturn;
     }
 
     public void createBranch(Branch aNewBranch){
@@ -55,6 +52,13 @@ public class BithubRepository {
         Commit c = (Commit) this.getSession().createQuery("select c " + "from Commit c " + "where c.hash like :commitHash").
                 setParameter("commitHash", commitHash).getSingleResult();
         Optional<Commit> toReturn = Optional.of(c);
+        return toReturn;
+    }
+
+    public Optional<Branch> getBranchByName(String branchName){
+        Branch b = (Branch) this.getSession().createQuery("select b " + "from Branch b " + "where b.name like :branchName").
+                setParameter("branchName", branchName).getSingleResult();
+        Optional<Branch> toReturn = Optional.of(b);
         return toReturn;
     }
 

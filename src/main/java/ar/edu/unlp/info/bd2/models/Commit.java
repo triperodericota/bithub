@@ -1,7 +1,7 @@
 package ar.edu.unlp.info.bd2.models;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Commit {
@@ -21,8 +21,8 @@ public class Commit {
     @JoinColumn(name="IdUser")
     private User author;
 
-    @OneToMany
-    private List<File> files;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<File> files = new ArrayList<File>();
 
     @ManyToOne
     @JoinColumn(name="IdBranch")
@@ -30,7 +30,6 @@ public class Commit {
 
 
     public Commit() { }
-
 
     public Commit (String description, String hash, User author, List<File> files, Branch aBranch){
         this.setMessage(description);
@@ -40,29 +39,35 @@ public class Commit {
         this.setBranch(aBranch);
     }
 
-
     public Long getId() {
         return id;
     }
-
 
     public User getAuthor() {
         return author;
     }
 
-
     public void setAuthor(User user) {
         this.author = user;
     }
 
-
     public List<File> getFiles() {
-        return files;
+        return this.files;
     }
 
+    public void setFiles(List<File> filesList) {
+        Iterator<File> iter = filesList.iterator();
+        while(iter.hasNext()){
+            this.files.add(iter.next());
+        }
+    }
 
-    public void setFiles(List<File> array) {
-        this.files = array;
+    public void addFile(File file){
+        this.files.add(file);
+    }
+
+    public void removeFile(File file){
+        this.files.remove(file);
     }
 
     public Branch getBranch() {
@@ -77,16 +82,13 @@ public class Commit {
         return message;
     }
 
-
     public void setMessage(String description) {
         this.message = description;
     }
 
-
     public String getHash() {
         return hash;
     }
-
 
     public void setHash(String hash) {
         this.hash = hash;
