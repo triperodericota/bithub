@@ -24,7 +24,7 @@ public class BithubRepository {
     }
 
     private Session getSession(){
-        return session.getObject().openSession();
+        return session.getObject().getCurrentSession();
     }
 
     public void createUser(User aNewUser){ this.getSession().save(aNewUser); }
@@ -34,10 +34,6 @@ public class BithubRepository {
                 setParameter("email", email).getSingleResult();
         Optional<User> toReturn = Optional.of(u);
         return toReturn;
-    }
-
-    public void createBranch(Branch aNewBranch){
-        this.getSession().save(aNewBranch);
     }
 
     public void createCommit(Commit aNewCommit){
@@ -55,6 +51,10 @@ public class BithubRepository {
         return toReturn;
     }
 
+    public void createBranch(Branch aNewBranch){
+        this.getSession().save(aNewBranch);
+    }
+
     public Optional<Branch> getBranchByName(String branchName){
         Branch b = (Branch) this.getSession().createQuery("select b " + "from Branch b " + "where b.name like :branchName").
                 setParameter("branchName", branchName).getSingleResult();
@@ -63,4 +63,5 @@ public class BithubRepository {
     }
 
 
+    public void createReview(Review aNewReview) { this.getSession().save(aNewReview); }
 }

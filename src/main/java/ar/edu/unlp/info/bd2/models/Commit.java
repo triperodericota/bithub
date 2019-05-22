@@ -21,11 +21,11 @@ public class Commit {
     @JoinColumn(name="IdUser")
     private User author;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(/*fetch = FetchType.LAZY,*/mappedBy = "commit", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<File> files = new ArrayList<File>();
 
     @ManyToOne
-    @JoinColumn(name="IdBranch")
+    @JoinColumn(name="id_branch")
     private Branch branch;
 
 
@@ -56,10 +56,7 @@ public class Commit {
     }
 
     public void setFiles(List<File> filesList) {
-        Iterator<File> iter = filesList.iterator();
-        while(iter.hasNext()){
-            this.files.add(iter.next());
-        }
+        filesList.forEach(file -> this.addFile(file));
     }
 
     public void addFile(File file){
@@ -94,4 +91,8 @@ public class Commit {
         this.hash = hash;
     }
 
+    @Override
+    public String toString() {
+        return " --- files for commit : " + this.files.toString();
+    }
 }
