@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {AppConfig.class, HibernateConfiguration.class}, loader = AnnotationConfigContextLoader.class)
 @Transactional
-@Rollback(true)
+@Rollback(true) /* poner en false para testear pero al commitearlo dejar en true */
 public class BithubServiceTestCase {
 
   @Autowired
@@ -53,8 +53,8 @@ public class BithubServiceTestCase {
     assertTrue(commitFromDb.isPresent());
     assertEquals(user.getId(), commitFromDb.get().getAuthor().getId());
     assertEquals(2, commitFromDb.get().getFiles().size());
-  }
-    /*assertEquals("System.out.println(\"Hello world\");", commitFromDb.get().getFiles().get(0).getContent());
+
+    assertEquals("System.out.println(\"Hello world\");", commitFromDb.get().getFiles().get(0).getContent());
     assertEquals("Main.java", commitFromDb.get().getFiles().get(0).getFilename());
 
     assertEquals("print(\"Hello world\")", commitFromDb.get().getFiles().get(1).getContent());
@@ -64,7 +64,7 @@ public class BithubServiceTestCase {
     assertTrue(branchFromDb.isPresent());
     assertEquals(1, branchFromDb.get().getCommits().size());
   }
-
+/*
   @Test
   public void testCreateTag() throws BithubException {
     Branch master = this.service.createBranch("master");
@@ -85,9 +85,9 @@ public class BithubServiceTestCase {
 
     assertFalse(this.service.getTagByName("fakeTag123").isPresent());
   }
-
-    @Test
-    void testCreateReview () throws BithubException {
+*/
+  @Test
+  void testCreateReview() throws BithubException {
       Branch master = this.service.createBranch("master");
       Branch develop = this.service.createBranch("develop");
 
@@ -104,7 +104,7 @@ public class BithubServiceTestCase {
       assertNotNull(review.getId());
       assertEquals(master.getId(), review.getBranch().getId());
       assertEquals(user2.getId(), review.getAuthor().getId());
-
+/*
     FileReview fileReview = this.service.addFileReview(review, fileInMasterBranch, 1, "There is a typo ('wrld' should be 'world')");
     assertNotNull(fileReview.getId());
     assertEquals(fileInMasterBranch.getId(), fileReview.getReviewedFile().getId());
@@ -125,8 +125,8 @@ public class BithubServiceTestCase {
     assertEquals(fileReview.getId(), freshReview.get().getReviews().get(0).getId());
     assertEquals(fileReview.getComment(), freshReview.get().getReviews().get(0).getComment());
     assertEquals(fileReview.getLineNumber(), freshReview.get().getReviews().get(0).getLineNumber());
-  }
-
+  */}
+/*
   @Test
   void testGetCommitsFromUser() {
     Branch master = this.service.createBranch("master");
@@ -198,7 +198,9 @@ public class BithubServiceTestCase {
     assertTrue(users.stream().anyMatch(u -> u.getEmail().equals("user1@bithub.bd2.info.unlp.edu.ar")));
     assertTrue(users.stream().anyMatch(u -> u.getEmail().equals("user2@bithub.bd2.info.unlp.edu.ar")));
     assertFalse(users.stream().anyMatch(u -> u.getEmail().equals("user3@bithub.bd2.info.unlp.edu.ar")));
-  */
-    }
+
+  }*/
+
+  }
 
 

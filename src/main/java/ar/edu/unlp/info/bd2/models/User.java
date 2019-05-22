@@ -3,6 +3,7 @@ package ar.edu.unlp.info.bd2.models;
 import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,7 +22,7 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "IdUser")
-    private List<Commit> commits;
+    private List<Commit> commits = new ArrayList<>();
 
     public User() { }
 
@@ -36,25 +37,28 @@ public class User {
         return email;
     }
 
-
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     public String getName() {
         return name;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
-
 
     public Long getId() {
         return id;
     }
 
+    public List<Commit> getCommits() {
+        return commits;
+    }
+
+    public void addCommit(Commit aCommit){
+        this.getCommits().add(aCommit);
+    }
 }
 

@@ -1,21 +1,37 @@
 package ar.edu.unlp.info.bd2.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-//@Entity
+@Entity
 public class FileReview {
 
-  //  @Id
-    //@GeneratedValue
+    @Column
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name="review_id")
     private Review review;
+
+    @ManyToOne
+    @JoinColumn(name="file_id")
     private File file;
+
+    @Column
     private Integer line;
+
+    @Column
     private String comment;
 
     public FileReview() {
+    }
+
+    public FileReview(Review aReview, File aFile, Integer lineNumber, String aComment){
+        this.setReview(aReview);
+        this.setFile(aFile);
+        this.setLine(lineNumber);
+        this.setComment(aComment);
     }
 
     public Long getId() {

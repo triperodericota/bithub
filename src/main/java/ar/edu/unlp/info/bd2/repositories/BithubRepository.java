@@ -24,23 +24,16 @@ public class BithubRepository {
     }
 
     private Session getSession(){
-        return session.getObject().openSession();
+        return session.getObject().getCurrentSession();
     }
 
     public void createUser(User aNewUser){ this.getSession().save(aNewUser); }
 
     public Optional<User> getUserByEmail(String email){
-/*        Query query = this.getSession()
-                .createQuery("FROM  User u " + " WHERE u.email like :email");
-
-        query.setParameter("email", email);
-        Optional<User> returned = Optional.of(query.getSingleResult());
-        return returned;*/
-        return Optional.empty();
-    }
-
-    public void createBranch(Branch aNewBranch){
-        this.getSession().save(aNewBranch);
+        User u = (User) this.getSession().createQuery("select u " + "from User u " + "where u.email like :email").
+                setParameter("email", email).getSingleResult();
+        Optional<User> toReturn = Optional.of(u);
+        return toReturn;
     }
 
     public void createCommit(Commit aNewCommit){
@@ -58,10 +51,17 @@ public class BithubRepository {
         return toReturn;
     }
 
-    public void createTagForCommit(Tag newTag){
-        this.getSession().save(newTag);
+    public void createBranch(Branch aNewBranch){
+        this.getSession().save(aNewBranch);
+    }
+
+    public Optional<Branch> getBranchByName(String branchName){
+        Branch b = (Branch) this.getSession().createQuery("select b " + "from Branch b " + "where b.name like :branchName").
+                setParameter("branchName", branchName).getSingleResult();
+        Optional<Branch> toReturn = Optional.of(b);
+        return toReturn;
     }
 
 
-
+    public void createReview(Review aNewReview) { this.getSession().save(aNewReview); }
 }

@@ -44,8 +44,12 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> files, Branch branch) {
-        Commit newCommit= new Commit(description,hash,author,files,branch);
+        Commit newCommit = new Commit(description, hash, author, files, branch);
         repository.createCommit(newCommit);
+        for (File file : files) {
+            file.setCommit(newCommit);
+        }
+        branch.addCommit(newCommit);
         return newCommit;
     }
 
@@ -73,12 +77,19 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public Review createReview(Branch branch, User user) {
-        return null;
+        Review newReview = new Review(branch, user);
+        repository.createReview(newReview);
+        return newReview;
     }
 
     @Override
     public FileReview addFileReview(Review review, File file, int lineNumber, String comment) throws BithubException {
-        return null;
+        if(file.getCommit().getBranch().equals(review.getBranch())) {
+            FileReview newFileReview = new FileReview(review, file, lineNumber, comment);
+            return null;
+        }else {
+            throw new BithubException("The review's branch must be equals to file's branch");
+        }
     }
 
     @Override
@@ -103,7 +114,7 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public Optional<Branch> getBranchByName(String branchName) {
-        return Optional.empty();
+        return repository.getBranchByName(branchName);
     }
 
 }
