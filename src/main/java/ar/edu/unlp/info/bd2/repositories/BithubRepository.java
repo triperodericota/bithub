@@ -53,9 +53,13 @@ public class BithubRepository {
 
     public Optional<Commit> getCommitByHash(String commitHash){
         Commit c = (Commit) this.getSession().createQuery("select c " + "from Commit c " + "where c.hash like :commitHash").
-                setParameter("commitHash", commitHash).getSingleResult();
+                setParameter("commitHash", commitHash).uniqueResult();
         Optional<Commit> toReturn = Optional.of(c);
         return toReturn;
+    }
+
+    public void createTagForCommit(Tag newTag){
+        this.getSession().save(newTag);
     }
 
 

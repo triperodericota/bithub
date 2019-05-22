@@ -16,6 +16,11 @@ public class File {
     @Column
     private String content;
 
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="commit_id")
+    private Commit commit;
+
     public File() { }
 
 
@@ -48,6 +53,7 @@ public class File {
     public void setContent(String content) {
         this.content = content;
     }
+
 
 
 }

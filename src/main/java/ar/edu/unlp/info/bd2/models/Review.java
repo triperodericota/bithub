@@ -1,16 +1,19 @@
 package ar.edu.unlp.info.bd2.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-//@Entity
+@Entity
 public class Review {
 
-  //  @Id
-    //@GeneratedValue
+    @Id
+    @GeneratedValue
+    @Column
     private Long id;
+
+    @ManyToOne
     private User author;
+
+    @ManyToOne
     private Branch branch;
 
     public Review() {

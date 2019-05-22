@@ -50,7 +50,7 @@ public class BithubServiceImpl implements BithubService {
     }
 
     @Override
-    public Tag createTagForCommit(String commitHash, String name) throws BithubException {
+    public Tag createTagForCommit(String commitHash, String name) {
         return null;
     }
 

@@ -6,9 +6,9 @@ import java.util.List;
 @Entity
 public class Commit {
 
-    @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "commitId")
     private Long id;
 
     @Column
@@ -21,12 +21,13 @@ public class Commit {
     @JoinColumn(name="IdUser")
     private User author;
 
-    @OneToMany
+    @OneToMany(/*fetch = FetchType.LAZY,*/mappedBy = "commit", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<File> files;
 
     @ManyToOne
     @JoinColumn(name="IdBranch")
     private Branch branch;
+
 
 
     public Commit() { }
@@ -38,6 +39,7 @@ public class Commit {
         this.setAuthor(author);
         this.setFiles(files);
         this.setBranch(aBranch);
+
     }
 
 

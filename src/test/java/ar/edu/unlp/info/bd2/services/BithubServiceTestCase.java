@@ -29,7 +29,7 @@ public class BithubServiceTestCase {
   @Test
   public void testCreateBranchAndCommit() {
     Branch master = this.service.createBranch("master");
-    assertNotNull(master.getId());  //PREGUNTAR PORQUE ESTE METODO FUNCIONA SOLO CUANDO GUARDO LA TUPLA CREADA!
+    assertNotNull(master.getId());
     assertEquals("master", master.getName());
 
     User user = this.service.createUser("user@bithub.bd2.info.unlp.edu.ar", "User");
@@ -53,8 +53,8 @@ public class BithubServiceTestCase {
     assertTrue(commitFromDb.isPresent());
     assertEquals(user.getId(), commitFromDb.get().getAuthor().getId());
     assertEquals(2, commitFromDb.get().getFiles().size());
-/*
-    assertEquals("System.out.println(\"Hello world\");", commitFromDb.get().getFiles().get(0).getContent());
+  }
+    /*assertEquals("System.out.println(\"Hello world\");", commitFromDb.get().getFiles().get(0).getContent());
     assertEquals("Main.java", commitFromDb.get().getFiles().get(0).getFilename());
 
     assertEquals("print(\"Hello world\")", commitFromDb.get().getFiles().get(1).getContent());
@@ -86,24 +86,24 @@ public class BithubServiceTestCase {
     assertFalse(this.service.getTagByName("fakeTag123").isPresent());
   }
 
-  @Test
-  void testCreateReview() throws BithubException {
-    Branch master = this.service.createBranch("master");
-    Branch develop = this.service.createBranch("develop");
+    @Test
+    void testCreateReview () throws BithubException {
+      Branch master = this.service.createBranch("master");
+      Branch develop = this.service.createBranch("develop");
 
-    User user1 = this.service.createUser("user1@bithub.bd2.info.unlp.edu.ar", "User One");
-    User user2 = this.service.createUser("user2@bithub.bd2.info.unlp.edu.ar", "User Two");
+      User user1 = this.service.createUser("user1@bithub.bd2.info.unlp.edu.ar", "User One");
+      User user2 = this.service.createUser("user2@bithub.bd2.info.unlp.edu.ar", "User Two");
 
-    File fileInMasterBranch = this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
-    this.service.createCommit("Initial commit", "ab4f19z", user1, Arrays.asList(fileInMasterBranch), master);
+      File fileInMasterBranch = this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
+      this.service.createCommit("Initial commit", "ab4f19z", user1, Arrays.asList(fileInMasterBranch), master);
 
-    File fileInDevelopBranch = this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
-    this.service.createCommit("Initial commit", "ab4f19z", user1, Arrays.asList(fileInDevelopBranch), develop);
+      File fileInDevelopBranch = this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
+      this.service.createCommit("Initial commit", "ab4f19z", user1, Arrays.asList(fileInDevelopBranch), develop);
 
-    Review review = this.service.createReview(master, user2);
-    assertNotNull(review.getId());
-    assertEquals(master.getId(), review.getBranch().getId());
-    assertEquals(user2.getId(), review.getAuthor().getId());
+      Review review = this.service.createReview(master, user2);
+      assertNotNull(review.getId());
+      assertEquals(master.getId(), review.getBranch().getId());
+      assertEquals(user2.getId(), review.getAuthor().getId());
 
     FileReview fileReview = this.service.addFileReview(review, fileInMasterBranch, 1, "There is a typo ('wrld' should be 'world')");
     assertNotNull(fileReview.getId());
@@ -199,8 +199,6 @@ public class BithubServiceTestCase {
     assertTrue(users.stream().anyMatch(u -> u.getEmail().equals("user2@bithub.bd2.info.unlp.edu.ar")));
     assertFalse(users.stream().anyMatch(u -> u.getEmail().equals("user3@bithub.bd2.info.unlp.edu.ar")));
   */
-  }
-
-  }
+    }
 
 

@@ -1,22 +1,24 @@
 package ar.edu.unlp.info.bd2.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 //@Entity
 public class Tag {
 
-  //  @Id
+    //@Id
     //@GeneratedValue
     private Long id;
+
+    //@OneToOne(cascade = CascadeType.ALL)
+    //@JoinColumn(name = "commit_id")
     private String commitHash;
+
     private String name;
 
     public Tag() {
     }
 
-    public void createTagForCommit(String commitHash, String name){
+    public Tag(String commitHash, String name){
         this.setCommitHash(commitHash);
         this.setName(name);
     }
