@@ -2,25 +2,28 @@ package ar.edu.unlp.info.bd2.models;
 
 import javax.persistence.*;
 
-//@Entity
+@Entity
 public class Tag {
 
-    //@Id
-    //@GeneratedValue
+    @Id
     private Long id;
 
-    //@OneToOne(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "commit_id")
     private String commitHash;
 
     private String name;
 
+    @OneToOne
+    @JoinColumn(name= "commitId")
+    @MapsId
+    private Commit commit;
+
     public Tag() {
     }
 
-    public Tag(String commitHash, String name){
+    public Tag(String commitHash, String name, Commit newCommit){
         this.setCommitHash(commitHash);
         this.setName(name);
+        this.setCommit(newCommit);
     }
 
     public Long getId(){
@@ -41,6 +44,14 @@ public class Tag {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Commit getCommit() {
+        return commit;
+    }
+
+    public void setCommit(Commit commit) {
+        this.commit = commit;
     }
 
 }

@@ -47,7 +47,7 @@ public class BithubRepository {
     public Optional<Commit> getCommitByHash(String commitHash){
         Commit c = (Commit) this.getSession().createQuery("select c " + "from Commit c " + "where c.hash like :commitHash").
                 setParameter("commitHash", commitHash).uniqueResult();
-        Optional<Commit> toReturn = Optional.of(c);
+        Optional<Commit> toReturn = Optional.ofNullable(c);
         return toReturn;
     }
 
@@ -64,4 +64,13 @@ public class BithubRepository {
 
 
     public void createReview(Review aNewReview) { this.getSession().save(aNewReview); }
+
+    public void createTag(Tag newTag){ this.getSession().save(newTag);}
+
+    public Optional<Tag> getTagByName(String name){
+        Tag t = (Tag) this.getSession().createQuery("select t " + "from Tag t " + "where t.name like :tagName").
+                setParameter("tagName",name).uniqueResult();
+        Optional<Tag> toReturn = Optional.ofNullable(t);
+        return toReturn;
+    }
 }

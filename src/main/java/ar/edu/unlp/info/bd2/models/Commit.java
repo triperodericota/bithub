@@ -28,6 +28,8 @@ public class Commit {
     @JoinColumn(name="id_branch")
     private Branch branch;
 
+    @OneToOne(mappedBy = "commit",cascade = CascadeType.ALL)
+    private Tag tag;
 
 
     public Commit() { }
@@ -96,5 +98,13 @@ public class Commit {
     @Override
     public String toString() {
         return " --- files for commit : " + this.files.toString();
+    }
+
+    public Tag getTag() {
+        return tag;
+    }
+
+    public void setTag(Tag tag) {
+        this.tag = tag;
     }
 }

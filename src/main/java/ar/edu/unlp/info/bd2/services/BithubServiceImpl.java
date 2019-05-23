@@ -39,7 +39,6 @@ public class BithubServiceImpl implements BithubService {
         Branch newBranch= new Branch(name);
         repository.createBranch(newBranch);
         return newBranch;
-
     }
 
     @Override
@@ -54,8 +53,17 @@ public class BithubServiceImpl implements BithubService {
     }
 
     @Override
-    public Tag createTagForCommit(String commitHash, String name) {
-        return null;
+    public Tag createTagForCommit(String commitHash, String name) throws BithubException {
+        Optional<Commit> commitOptional= this.getCommitByHash(commitHash);
+        if(commitOptional.isPresent()) {
+            Commit commit = commitOptional.get();
+            Tag newTag = new Tag(commitHash, name, commit);
+            repository.createTag(newTag);
+            commit.setTag(newTag);
+            return newTag;
+        }else{
+            throw new BithubException("El commit no existe.");
+        }
     }
 
     @Override
@@ -72,7 +80,7 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public Optional<Tag> getTagByName(String tagName) {
-        return Optional.empty();
+        return repository.getTagByName(tagName);
     }
 
     @Override

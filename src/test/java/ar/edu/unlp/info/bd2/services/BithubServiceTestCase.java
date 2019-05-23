@@ -64,7 +64,7 @@ public class BithubServiceTestCase {
     assertTrue(branchFromDb.isPresent());
     assertEquals(1, branchFromDb.get().getCommits().size());
   }
-/*
+
   @Test
   public void testCreateTag() throws BithubException {
     Branch master = this.service.createBranch("master");
@@ -85,7 +85,7 @@ public class BithubServiceTestCase {
 
     assertFalse(this.service.getTagByName("fakeTag123").isPresent());
   }
-*/
+/*
   @Test
   void testCreateReview() throws BithubException {
       Branch master = this.service.createBranch("master");
@@ -104,7 +104,7 @@ public class BithubServiceTestCase {
       assertNotNull(review.getId());
       assertEquals(master.getId(), review.getBranch().getId());
       assertEquals(user2.getId(), review.getAuthor().getId());
-/*
+
     FileReview fileReview = this.service.addFileReview(review, fileInMasterBranch, 1, "There is a typo ('wrld' should be 'world')");
     assertNotNull(fileReview.getId());
     assertEquals(fileInMasterBranch.getId(), fileReview.getReviewedFile().getId());
@@ -125,7 +125,7 @@ public class BithubServiceTestCase {
     assertEquals(fileReview.getId(), freshReview.get().getReviews().get(0).getId());
     assertEquals(fileReview.getComment(), freshReview.get().getReviews().get(0).getComment());
     assertEquals(fileReview.getLineNumber(), freshReview.get().getReviews().get(0).getLineNumber());
-  */}
+  */
 /*
   @Test
   void testGetCommitsFromUser() {
