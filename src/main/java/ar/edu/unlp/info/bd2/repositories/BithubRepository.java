@@ -80,4 +80,9 @@ public class BithubRepository {
                 setParameter("userId",userId).uniqueResult();
         return u;
     }
+
+    public List<Long> getIdsForUsers(){
+        List<Long> ids= this.getSession().createQuery("select u.id "+"from User u ").list();
+        return ids;
+    }
 }

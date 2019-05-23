@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -114,7 +115,14 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public Map<Long, Long> getCommitCountByUser() {
-        return null;
+        List<Long> ids= repository.getIdsForUsers(); //Obtengo todos los ids de los usuarios.
+        Map<Long, Long> map= new HashMap<Long,Long>();
+        for (Long id: ids){
+            User u= repository.getUserForId(id); //Por cada id, traigo el usuario, junto con su lista de commits. PREGUNTAR SI HAY MANERA MAS EFICIENTE.
+            Long count= new Long (u.getCommits().size());
+            map.put(id,count);
+        }
+        return map;
     }
 
     @Override
