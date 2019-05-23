@@ -8,6 +8,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import ar.edu.unlp.info.bd2.models.*;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 // import org.hibernate.SessionFactory; --> no se si tenemos que usar esta clase y pedirle getCurrentSession o trabajar con LocalSessionFactoryBean
@@ -72,5 +73,11 @@ public class BithubRepository {
                 setParameter("tagName",name).uniqueResult();
         Optional<Tag> toReturn = Optional.ofNullable(t);
         return toReturn;
+    }
+
+    public User getUserForId(long userId){
+        User u = (User) this.getSession().createQuery("select u "+"from User u "+ "where u.id=:userId").
+                setParameter("userId",userId).uniqueResult();
+        return u;
     }
 }

@@ -49,6 +49,7 @@ public class BithubServiceImpl implements BithubService {
             file.setCommit(newCommit);
         }
         branch.addCommit(newCommit);
+        author.addCommit(newCommit);
         return newCommit;
     }
 
@@ -107,7 +108,8 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public List<Commit> getAllCommitsForUser(long userId) {
-        return null;
+        User u= repository.getUserForId(userId);
+        return u.getCommits();
     }
 
     @Override

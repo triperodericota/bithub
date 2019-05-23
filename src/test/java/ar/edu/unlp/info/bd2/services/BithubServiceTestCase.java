@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Optional;
+import java.util.List;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -126,7 +128,7 @@ public class BithubServiceTestCase {
     assertEquals(fileReview.getComment(), freshReview.get().getReviews().get(0).getComment());
     assertEquals(fileReview.getLineNumber(), freshReview.get().getReviews().get(0).getLineNumber());
   */
-/*
+
   @Test
   void testGetCommitsFromUser() {
     Branch master = this.service.createBranch("master");
@@ -145,7 +147,7 @@ public class BithubServiceTestCase {
     assertEquals(1, commits.stream().filter(s -> s.getId() == commitInDevelop.getId()).count());
     assertEquals(1, commits.stream().filter(s -> s.getId() == commitInMaster.getId()).count());
   }
-
+/*
   @Test
   void testGetTotalNumberOfCommitsPerUser() {
     Branch master = this.service.createBranch("master");

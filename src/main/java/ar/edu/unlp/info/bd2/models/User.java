@@ -20,7 +20,7 @@ public class User {
     @Column
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "IdUser")
     private List<Commit> commits = new ArrayList<>();
 
