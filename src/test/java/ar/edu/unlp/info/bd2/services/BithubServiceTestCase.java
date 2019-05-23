@@ -13,6 +13,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Optional;
 import java.util.List;
 
@@ -147,7 +148,7 @@ public class BithubServiceTestCase {
     assertEquals(1, commits.stream().filter(s -> s.getId() == commitInDevelop.getId()).count());
     assertEquals(1, commits.stream().filter(s -> s.getId() == commitInMaster.getId()).count());
   }
-/*
+
   @Test
   void testGetTotalNumberOfCommitsPerUser() {
     Branch master = this.service.createBranch("master");
@@ -169,7 +170,7 @@ public class BithubServiceTestCase {
     assertEquals(new Long(1), commitCount.get(user1.getId()));
     assertEquals(new Long(2), commitCount.get(user2.getId()));
   }
-
+/*
   @Test
   void testUsersThatCommitedInBranch() throws BithubException {
     Branch master = this.service.createBranch("master");
