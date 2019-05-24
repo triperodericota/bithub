@@ -52,11 +52,11 @@ public class Review {
         this.branch = branch;
     }
 
-    public void addFileReview(FileReview aFileReview){
-        this.getFiles().add(aFileReview);
+    public void addReview(FileReview aFileReview){
+        this.getReviews().add(aFileReview);
     }
 
-    public List<FileReview> getFiles(){
+    public List<FileReview> getReviews(){
         return this.files;
     }
 }

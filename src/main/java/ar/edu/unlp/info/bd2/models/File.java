@@ -59,6 +59,13 @@ public class File {
 
     public Commit getCommit() { return this.commit; }
 
+    public List<FileReview> getReviews(){
+        return this.reviews;
+    }
+
+    public void addReview(FileReview aNewFileReview){
+        this.getReviews().add(aNewFileReview);
+    }
 
 
 }
