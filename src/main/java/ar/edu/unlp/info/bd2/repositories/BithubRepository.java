@@ -66,6 +66,15 @@ public class BithubRepository {
 
     public void createReview(Review aNewReview) { this.getSession().save(aNewReview); }
 
+    public void createFileReview(FileReview aNewFileReview) { this.getSession().save(aNewFileReview); }
+
+    public Optional<Review> getReviewById(long id){
+        Review r = (Review) this.getSession().createQuery("select r " + "from Review r " + "where r.id like :id").
+                setParameter("id", id).getSingleResult();
+        Optional<Review> toReturn = Optional.of(r);
+        return toReturn;
+    }
+
     public void createTag(Tag newTag){ this.getSession().save(newTag);}
 
     public Optional<Tag> getTagByName(String name){

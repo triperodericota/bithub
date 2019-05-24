@@ -96,7 +96,11 @@ public class BithubServiceImpl implements BithubService {
     public FileReview addFileReview(Review review, File file, int lineNumber, String comment) throws BithubException {
         if(file.getCommit().getBranch().equals(review.getBranch())) {
             FileReview newFileReview = new FileReview(review, file, lineNumber, comment);
-            return null;
+            repository.createFileReview(newFileReview);
+            review.addReview(newFileReview);
+            file.addReview(newFileReview);
+            return newFileReview;
+
         }else {
             throw new BithubException("The review's branch must be equals to file's branch");
         }
@@ -104,7 +108,7 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public Optional<Review> getReviewById(long id) {
-        return Optional.empty();
+        return repository.getReviewById(id);
     }
 
     @Override

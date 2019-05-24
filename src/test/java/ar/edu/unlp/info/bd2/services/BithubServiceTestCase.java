@@ -88,7 +88,7 @@ public class BithubServiceTestCase {
 
     assertFalse(this.service.getTagByName("fakeTag123").isPresent());
   }
-/*
+
   @Test
   void testCreateReview() throws BithubException {
       Branch master = this.service.createBranch("master");
@@ -108,27 +108,27 @@ public class BithubServiceTestCase {
       assertEquals(master.getId(), review.getBranch().getId());
       assertEquals(user2.getId(), review.getAuthor().getId());
 
-    FileReview fileReview = this.service.addFileReview(review, fileInMasterBranch, 1, "There is a typo ('wrld' should be 'world')");
-    assertNotNull(fileReview.getId());
-    assertEquals(fileInMasterBranch.getId(), fileReview.getReviewedFile().getId());
-    assertEquals(new Integer(1), fileReview.getLineNumber());
-    assertEquals("There is a typo ('wrld' should be 'world')", fileReview.getComment());
+      FileReview fileReview = this.service.addFileReview(review, fileInMasterBranch, 1, "There is a typo ('wrld' should be 'world')");
+      assertNotNull(fileReview.getId());
+      assertEquals(fileInMasterBranch.getId(), fileReview.getReviewedFile().getId());
+      assertEquals(new Integer(1), fileReview.getLineNumber());
+      assertEquals("There is a typo ('wrld' should be 'world')", fileReview.getComment());
 
-    // debe fallar: el branch en el cual se quiere hacer el review no corresponde con el branch en el cual se encuentra
-    // el archivo
-    assertThrows(BithubException.class,
-            () -> this.service.addFileReview(review, fileInDevelopBranch, 1, "There is a typo ('wrld' should be 'world'"));
+      // debe fallar: el branch en el cual se quiere hacer el review no corresponde con el branch en el cual se encuentra
+      // el archivo
+      assertThrows(BithubException.class,
+              () -> this.service.addFileReview(review, fileInDevelopBranch, 1, "There is a typo ('wrld' should be 'world'"));
 
-    Optional<Review> freshReview = this.service.getReviewById(review.getId());
-    assertTrue(freshReview.isPresent());
-    assertEquals(user2.getId(), freshReview.get().getAuthor().getId());
-    assertEquals(master.getId(), freshReview.get().getBranch().getId());
-    assertEquals(1, freshReview.get().getReviews().size());
+      Optional<Review> freshReview = this.service.getReviewById(review.getId());
+      assertTrue(freshReview.isPresent());
+      assertEquals(user2.getId(), freshReview.get().getAuthor().getId());
+      assertEquals(master.getId(), freshReview.get().getBranch().getId());
+      assertEquals(1, freshReview.get().getReviews().size());
 
-    assertEquals(fileReview.getId(), freshReview.get().getReviews().get(0).getId());
-    assertEquals(fileReview.getComment(), freshReview.get().getReviews().get(0).getComment());
-    assertEquals(fileReview.getLineNumber(), freshReview.get().getReviews().get(0).getLineNumber());
-  */
+      assertEquals(fileReview.getId(), freshReview.get().getReviews().get(0).getId());
+      assertEquals(fileReview.getComment(), freshReview.get().getReviews().get(0).getComment());
+      assertEquals(fileReview.getLineNumber(), freshReview.get().getReviews().get(0).getLineNumber());
+  }
 
   @Test
   void testGetCommitsFromUser() {
