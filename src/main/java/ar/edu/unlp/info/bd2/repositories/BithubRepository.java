@@ -58,8 +58,8 @@ public class BithubRepository {
 
     public Optional<Branch> getBranchByName(String branchName){
         Branch b = (Branch) this.getSession().createQuery("select b " + "from Branch b " + "where b.name like :branchName").
-                setParameter("branchName", branchName).getSingleResult();
-        Optional<Branch> toReturn = Optional.of(b);
+                setParameter("branchName", branchName).uniqueResult();
+        Optional<Branch> toReturn = Optional.ofNullable(b);
         return toReturn;
     }
 
@@ -94,9 +94,9 @@ public class BithubRepository {
         return ids;
     }
 
-    public List<User> getUsersThatCommittedInBranch(Long branch){ //Todavia no esta terminado!
-        List <User> users= this.getSession().createQuery("select c.author "+"from Commit c "+"where c.branch=:branchId group by c.author").
-                setParameter("brachId" , branch).list();
-        return users;
+    public List<User> getUsersThatCommittedInBranch(Branch branch) { //PREGUNAR EL CASTEO DE LISTA A LISTA DE USUARIOS!!
+
+        return this.getSession().createQuery("select c.author "+"from Commit c "+"where c.branch=:branch group by c.author").
+                setParameter("branch" , branch).list();
     }
 }

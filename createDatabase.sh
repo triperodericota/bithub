@@ -7,7 +7,7 @@ read -s root_pass
 echo "Por favor, ingrese la IP del host donde se ejecuta su DBMS: "
 read host_ip
 
-mysql -uroot -p$root_pass --protocol=tcp -e "drop database if exists bd2_grupo20;
+mysql -uroot -p$root_pass -e "drop database if exists bd2_grupo20;
 create database bd2_grupo20; drop user if exists 'cliente'@'$host_ip';
  create user 'cliente'@'$host_ip' identified by 'bd2';
  grant all privileges on bd2_grupo20.* TO 'cliente'@'$host_ip';"

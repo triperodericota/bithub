@@ -17,7 +17,7 @@ public class Commit {
     @Column
     private String hash;
 
-    @ManyToOne(fetch= FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name="user_id")
     private User author;
 

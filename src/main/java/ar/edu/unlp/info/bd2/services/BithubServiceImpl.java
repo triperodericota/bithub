@@ -134,8 +134,7 @@ public class BithubServiceImpl implements BithubService {
         Optional<Branch> branchOpt= this.getBranchByName(branchName);
         if(branchOpt.isPresent()){
             Branch b = branchOpt.get();
-            return(repository.getUsersThatCommittedInBranch(b.getId()));
-
+            return(repository.getUsersThatCommittedInBranch(b));
         }else{
             throw new BithubException("The branch don't exist.");
         }
