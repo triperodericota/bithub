@@ -8,7 +8,7 @@ public class Commit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "commitId")
+    @Column(name = "commit_id")
     private Long id;
 
     @Column
@@ -17,15 +17,15 @@ public class Commit {
     @Column
     private String hash;
 
-    @ManyToOne
-    @JoinColumn(name="IdUser")
+    @ManyToOne(fetch= FetchType.EAGER)
+    @JoinColumn(name="user_id")
     private User author;
 
     @OneToMany(/*fetch = FetchType.LAZY,*/mappedBy = "commit", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<File> files = new ArrayList<File>();
 
     @ManyToOne
-    @JoinColumn(name="id_branch")
+    @JoinColumn(name="branch_id")
     private Branch branch;
 
     @OneToOne(mappedBy = "commit",cascade = CascadeType.ALL)

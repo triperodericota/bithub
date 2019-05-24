@@ -63,7 +63,6 @@ public class BithubRepository {
         return toReturn;
     }
 
-
     public void createReview(Review aNewReview) { this.getSession().save(aNewReview); }
 
     public void createTag(Tag newTag){ this.getSession().save(newTag);}
@@ -84,5 +83,11 @@ public class BithubRepository {
     public List<Long> getIdsForUsers(){
         List<Long> ids= this.getSession().createQuery("select u.id "+"from User u ").list();
         return ids;
+    }
+
+    public List<User> getUsersThatCommittedInBranch(Long branch){ //Todavia no esta terminado!
+        List <User> users= this.getSession().createQuery("select c.author "+"from Commit c "+"where c.branch=:branchId group by c.author").
+                setParameter("brachId" , branch).list();
+        return users;
     }
 }

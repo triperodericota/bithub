@@ -21,7 +21,7 @@ public class User {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinColumn(name = "IdUser")
+    @JoinColumn(name = "user_id")
     private List<Commit> commits = new ArrayList<>();
 
     public User() { }

@@ -16,7 +16,7 @@ public class Branch {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_branch")
+    @JoinColumn(name = "branch_id")
     private List<Commit> commits = new ArrayList<>();
 
     public Branch() { }

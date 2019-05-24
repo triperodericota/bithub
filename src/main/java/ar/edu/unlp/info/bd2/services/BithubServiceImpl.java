@@ -64,7 +64,7 @@ public class BithubServiceImpl implements BithubService {
             commit.setTag(newTag);
             return newTag;
         }else{
-            throw new BithubException("El commit no existe.");
+            throw new BithubException("The commit don't exist.");
         }
     }
 
@@ -116,7 +116,7 @@ public class BithubServiceImpl implements BithubService {
     @Override
     public Map<Long, Long> getCommitCountByUser() {
         List<Long> ids= repository.getIdsForUsers(); //Obtengo todos los ids de los usuarios.
-        Map<Long, Long> map= new HashMap<Long,Long>();
+        Map<Long, Long> map= new HashMap<>();
         for (Long id: ids){
             User u= repository.getUserForId(id); //Por cada id, traigo el usuario, junto con su lista de commits. PREGUNTAR SI HAY MANERA MAS EFICIENTE.
             Long count= new Long (u.getCommits().size());
@@ -127,7 +127,14 @@ public class BithubServiceImpl implements BithubService {
 
     @Override
     public List<User> getUsersThatCommittedInBranch(String branchName) throws BithubException {
-        return null;
+        Optional<Branch> branchOpt= this.getBranchByName(branchName);
+        if(branchOpt.isPresent()){
+            Branch b = branchOpt.get();
+            return(repository.getUsersThatCommittedInBranch(b.getId()));
+
+        }else{
+            throw new BithubException("The branch don't exist.");
+        }
     }
 
     @Override

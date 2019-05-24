@@ -13,7 +13,7 @@ public class Tag {
     private String name;
 
     @OneToOne
-    @JoinColumn(name= "commitId")
+    @JoinColumn(name= "commit_id")
     @MapsId
     private Commit commit;
 
