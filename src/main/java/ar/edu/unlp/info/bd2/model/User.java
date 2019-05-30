@@ -8,11 +8,6 @@ import java.util.List;
 public class User extends PersistentObject {
 
     @Column
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column
     private String email;
 
     @Column

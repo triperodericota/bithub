@@ -21,14 +21,15 @@ public class MongoDBBithubRepository {
   @Autowired
   private MongoClient client;
 
-  @Autowired
-  private MongoDatabase database;
 
   public void saveBranch(Branch newBranch){
-      MongoCollection collection= database.getCollection("branch");
-      BasicDBObject document= new BasicDBObject();
-      document.put("name",newBranch.getName());
-      collection.insertOne(document);
+      MongoCollection<Branch> collection = client.getDatabase("bd2").getCollection("branch",Branch.class);
+      collection.insertOne(newBranch);
+  }
+
+  public void saveUser(User newUser){
+      MongoCollection<User> collection = client.getDatabase("bd2").getCollection("user",User.class);
+      collection.insertOne(newUser);
   }
 
 }

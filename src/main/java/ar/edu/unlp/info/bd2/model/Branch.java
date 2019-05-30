@@ -8,11 +8,6 @@ import java.util.List;
 public class Branch extends PersistentObject {
 
     @Column
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL)

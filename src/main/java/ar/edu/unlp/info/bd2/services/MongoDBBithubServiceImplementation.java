@@ -14,17 +14,15 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     @Autowired
     private MongoDBBithubRepository repository;
 
-    public MongoDBBithubServiceImplementation(){
-
-    }
-
     public MongoDBBithubServiceImplementation(MongoDBBithubRepository repo){ //PREGUNTAR!!
         this.repository = repo;
     }
 
     @Override
     public User createUser(String email, String name) {
-        return null;
+        User newUser = new User(email,name);
+        repository.saveUser(newUser);
+        return newUser;
     }
 
     @Override

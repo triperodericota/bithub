@@ -5,10 +5,6 @@ import javax.persistence.*;
 @Entity
 public class FileReview extends PersistentObject {
 
-    @Column
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @ManyToOne
     @JoinColumn(name="review_id")

@@ -5,8 +5,6 @@ import javax.persistence.*;
 @Entity
 public class Tag extends PersistentObject{
 
-    @Id
-    private Long id;
 
     private String commitHash;
 

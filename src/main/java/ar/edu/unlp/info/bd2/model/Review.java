@@ -7,10 +7,6 @@ import java.util.List;
 @Entity
 public class Review extends PersistentObject {
 
-    @Column
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @ManyToOne
     @JoinColumn(name="id_user")

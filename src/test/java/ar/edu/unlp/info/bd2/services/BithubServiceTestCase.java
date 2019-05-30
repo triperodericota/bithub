@@ -40,12 +40,12 @@ public abstract class BithubServiceTestCase<T> {
     Branch master = this.service.createBranch("master");
     assertNotNull(this.getId(master));
     assertEquals("master", master.getName());
-  }
-    /* User user = this.service.createUser("user@bithub.bd2.info.unlp.edu.ar", "User");
+
+    User user = this.service.createUser("user@bithub.bd2.info.unlp.edu.ar", "User");
     assertNotNull(this.getId(user));
     assertEquals("user@bithub.bd2.info.unlp.edu.ar", user.getEmail());
     assertEquals("User", user.getName());
-
+  }/*
     File file1 = this.service.createFile("System.out.println(\"Hello world\");", "Main.java");
     assertEquals("Main.java", file1.getFilename());
     assertEquals("System.out.println(\"Hello world\");", file1.getContent());
