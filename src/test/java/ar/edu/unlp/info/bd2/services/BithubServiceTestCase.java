@@ -45,7 +45,7 @@ public abstract class BithubServiceTestCase<T> {
     assertNotNull(this.getId(user));
     assertEquals("user@bithub.bd2.info.unlp.edu.ar", user.getEmail());
     assertEquals("User", user.getName());
-  }/*
+
     File file1 = this.service.createFile("System.out.println(\"Hello world\");", "Main.java");
     assertEquals("Main.java", file1.getFilename());
     assertEquals("System.out.println(\"Hello world\");", file1.getContent());
@@ -54,8 +54,8 @@ public abstract class BithubServiceTestCase<T> {
     File file2 = this.service.createFile("print(\"Hello world\")", "Main.py");
 
     Commit commit =
-        this.service.createCommit(
-            "Initial commit", "ab4f19z", user, Arrays.asList(file1, file2), master);
+            this.service.createCommit(
+                    "Initial commit", "ab4f19z", user, Arrays.asList(file1, file2), master);
     assertEquals("Initial commit", commit.getMessage());
     assertEquals("ab4f19z", commit.getHash());
     assertNotNull(this.getId(commit));
@@ -64,7 +64,7 @@ public abstract class BithubServiceTestCase<T> {
     assertTrue(commitFromDb.isPresent());
     assertEquals(this.getId(user), this.getId(commitFromDb.get().getAuthor()));
     assertEquals(2, commitFromDb.get().getFiles().size());
-
+  }/*
     assertEquals(
         "System.out.println(\"Hello world\");", commitFromDb.get().getFiles().get(0).getContent());
     assertEquals("Main.java", commitFromDb.get().getFiles().get(0).getFilename());

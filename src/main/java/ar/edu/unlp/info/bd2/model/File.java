@@ -3,6 +3,7 @@ package ar.edu.unlp.info.bd2.model;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import ar.edu.unlp.info.bd2.mongo.Association;
 
 @Entity
 public class File extends PersistentObject{
@@ -20,6 +21,9 @@ public class File extends PersistentObject{
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "file_id")
     private List<FileReview> reviews = new ArrayList<FileReview>();
+
+    @Transient
+    private Association commit_file;
 
     public File() { }
 
@@ -56,5 +60,11 @@ public class File extends PersistentObject{
         this.getReviews().add(aNewFileReview);
     }
 
+    public Association getCommit_file() {
+        return commit_file;
+    }
 
+    public void setCommit_file(Association commit_file) {
+        this.commit_file = commit_file;
+    }
 }

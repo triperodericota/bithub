@@ -1,5 +1,6 @@
 package ar.edu.unlp.info.bd2.services;
 
+import ar.edu.unlp.info.bd2.mongo.Association;
 import ar.edu.unlp.info.bd2.repositories.MongoDBBithubRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +45,14 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Commit> getCommitByHash(String commitHash) {
-        return Optional.empty();
+        return repository.getCommitByHash(commitHash);
     }
 
     @Override
     public File createFile(String name, String content) {
-        return null;
+        File newFile = new File(name,content);
+        repository.saveFile(newFile);
+        return newFile;
     }
 
     @Override
@@ -93,7 +96,13 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     }
 
     @Override
-    public Commit createCommit(String description, String hash, User author, List list, Branch branch) {
-        return null;
+    public Commit createCommit(String description, String hash, User author, List<File> list, Branch branch) {
+        Commit newCommit = new Commit(description,hash,author,list,branch);
+        repository.saveCommit(newCommit);
+        for(File file: list){ //PREGUNTAR ASSOCIATION!
+            Association newAssociation = new Association(file.getObjectId(),newCommit.getObjectId());
+            file.setCommit_file(newAssociation);
+        }
+        return newCommit;
     }
 }

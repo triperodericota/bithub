@@ -21,15 +21,34 @@ public class MongoDBBithubRepository {
   @Autowired
   private MongoClient client;
 
+  public MongoDatabase getDB(){
+        return client.getDatabase("bd2");
+  }
 
   public void saveBranch(Branch newBranch){
-      MongoCollection<Branch> collection = client.getDatabase("bd2").getCollection("branch",Branch.class);
+      MongoCollection<Branch> collection = this.getDB().getCollection("branch",Branch.class);
       collection.insertOne(newBranch);
   }
 
   public void saveUser(User newUser){
-      MongoCollection<User> collection = client.getDatabase("bd2").getCollection("user",User.class);
+      MongoCollection<User> collection = this.getDB().getCollection("user",User.class);
       collection.insertOne(newUser);
+  }
+
+  public void saveFile(File newFile){
+      MongoCollection<File> collection = this.getDB().getCollection("file", File.class);
+      collection.insertOne(newFile);
+  }
+
+  public void saveCommit(Commit newCommit){
+      MongoCollection<Commit> collection = this.getDB().getCollection("commit",Commit.class);
+      collection.insertOne(newCommit);
+  }
+
+  public Optional<Commit> getCommitByHash(String commitHash){
+      MongoCollection<Commit> collection = this.getDB().getCollection("commit", Commit.class);
+      Commit commit = collection.find(eq("hash",commitHash)).first();
+      return Optional.of(commit);
   }
 
 }
