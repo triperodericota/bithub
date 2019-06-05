@@ -9,8 +9,5 @@
         <module name="bd2-2019" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="bd2-2019" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

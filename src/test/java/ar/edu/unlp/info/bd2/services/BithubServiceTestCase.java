@@ -76,7 +76,7 @@ public abstract class BithubServiceTestCase<T> {
     assertTrue(branchFromDb.isPresent());
     assertEquals(1, branchFromDb.get().getCommits().size());
   }
-
+*/
   @Test
   public void testCreateTag() throws BithubException {
     Branch master = this.service.createBranch("master");
@@ -91,14 +91,14 @@ public abstract class BithubServiceTestCase<T> {
     Tag tag = this.service.createTagForCommit("ab4f19z", "tag1");
     assertNotNull(this.getId(tag));
     assertEquals("tag1", tag.getName());
-
+/*
     Optional<Tag> savedTag = this.service.getTagByName("tag1");
     assertTrue(savedTag.isPresent());
     assertEquals(this.getId(tag), this.getId(savedTag.get()));
 
     assertFalse(this.service.getTagByName("fakeTag123").isPresent());
-  }
-
+  */}
+/*
   @Test
   void testCreateReview() throws BithubException {
     Branch master = this.service.createBranch("master");

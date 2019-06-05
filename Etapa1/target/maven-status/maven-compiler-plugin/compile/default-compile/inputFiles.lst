@@ -1,0 +1,13 @@
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/repositories/BithubRepository.java
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/config/AppConfig.java
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/services/BithubService.java
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/models/FileReview.java
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/models/File.java
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/models/User.java
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/models/Review.java
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/models/Tag.java
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/config/HibernateConfiguration.java
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/models/Branch.java
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/services/BithubServiceImpl.java
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/models/Commit.java
+/home/triperodericota/Facultad/BBDD 2/Práctica/bithub-grupo-20/src/main/java/ar/edu/unlp/info/bd2/services/BithubException.java

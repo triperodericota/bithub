@@ -19,4 +19,5 @@ public class HibernateBithubTestCase extends BithubServiceTestCase<Long> {
   protected Long getId(PersistentObject object) {
     return object.getId();
   }
+
 }

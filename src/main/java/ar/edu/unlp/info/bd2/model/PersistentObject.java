@@ -12,7 +12,8 @@ public abstract class PersistentObject {
   @Column(name = "id", unique = true, nullable = false)
   protected Long id;
 
-  @BsonId private ObjectId objectId;
+  @BsonId
+  private ObjectId objectId;
 
   public Long getId() {
     return id;
