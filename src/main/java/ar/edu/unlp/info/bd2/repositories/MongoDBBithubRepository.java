@@ -21,32 +21,44 @@ public class MongoDBBithubRepository {
   @Autowired
   private MongoClient client;
 
-  public MongoDatabase getDB(){
+  private MongoDatabase getDB(){
         return client.getDatabase("bd2");
   }
 
+  private MongoCollection retrieveCollection(String className){
+      String fullyClassName = "ar.edu.unlp.info.bd2.model." + className;
+      Class<?> cls = null;
+      try {
+          cls = Class.forName(fullyClassName);
+      } catch (ClassNotFoundException e){
+          e.printStackTrace();
+      }
+
+      return this.getDB().getCollection(className.toLowerCase(), cls);
+  }
+
   public void saveBranch(Branch newBranch){
-      MongoCollection<Branch> collection = this.getDB().getCollection("branch",Branch.class);
+      MongoCollection<Branch> collection = this.retrieveCollection("Branch");
       collection.insertOne(newBranch);
   }
 
   public void saveUser(User newUser){
-      MongoCollection<User> collection = this.getDB().getCollection("user",User.class);
+      MongoCollection<User> collection = this.retrieveCollection("User");
       collection.insertOne(newUser);
   }
 
   public void saveFile(File newFile){
-      MongoCollection<File> collection = this.getDB().getCollection("file", File.class);
+      MongoCollection<File> collection = this.retrieveCollection("File");
       collection.insertOne(newFile);
   }
 
   public void saveCommit(Commit newCommit){
-      MongoCollection<Commit> collection = this.getDB().getCollection("commit",Commit.class);
+      MongoCollection<Commit> collection = this.retrieveCollection("Commit");
       collection.insertOne(newCommit);
   }
 
   public Optional<Commit> getCommitByHash(String commitHash){
-      MongoCollection<Commit> collection = this.getDB().getCollection("commit", Commit.class);
+      MongoCollection<Commit> collection = this.retrieveCollection("Commit");
       return Optional.ofNullable(collection.find(eq("hash",commitHash)).first());
   }
 
@@ -54,5 +66,7 @@ public class MongoDBBithubRepository {
       MongoCollection<Branch> collection = this.getDB().getCollection("branch", Branch.class);
       return Optional.ofNullable(collection.find(eq("name", branchName)).first());
   }
+
+
 
 }
