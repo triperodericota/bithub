@@ -64,9 +64,9 @@ public abstract class BithubServiceTestCase<T> {
     assertTrue(commitFromDb.isPresent());
     assertEquals(this.getId(user), this.getId(commitFromDb.get().getAuthor()));
     assertEquals(2, commitFromDb.get().getFiles().size());
-  }/*
+
     assertEquals(
-        "System.out.println(\"Hello world\");", commitFromDb.get().getFiles().get(0).getContent());
+            "System.out.println(\"Hello world\");", commitFromDb.get().getFiles().get(0).getContent());
     assertEquals("Main.java", commitFromDb.get().getFiles().get(0).getFilename());
 
     assertEquals("print(\"Hello world\")", commitFromDb.get().getFiles().get(1).getContent());
@@ -76,7 +76,7 @@ public abstract class BithubServiceTestCase<T> {
     assertTrue(branchFromDb.isPresent());
     assertEquals(1, branchFromDb.get().getCommits().size());
   }
-
+/*
   @Test
   public void testCreateTag() throws BithubException {
     Branch master = this.service.createBranch("master");

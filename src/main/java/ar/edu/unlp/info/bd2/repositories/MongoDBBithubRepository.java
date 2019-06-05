@@ -47,8 +47,12 @@ public class MongoDBBithubRepository {
 
   public Optional<Commit> getCommitByHash(String commitHash){
       MongoCollection<Commit> collection = this.getDB().getCollection("commit", Commit.class);
-      Commit commit = collection.find(eq("hash",commitHash)).first();
-      return Optional.of(commit);
+      return Optional.ofNullable(collection.find(eq("hash",commitHash)).first());
+  }
+
+  public Optional<Branch> getBranchByName(String branchName){
+      MongoCollection<Branch> collection = this.getDB().getCollection("branch", Branch.class);
+      return Optional.ofNullable(collection.find(eq("name", branchName)).first());
   }
 
 }

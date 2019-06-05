@@ -92,17 +92,13 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Branch> getBranchByName(String branchName) {
-        return Optional.empty();
+        return repository.getBranchByName(branchName);
     }
 
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> list, Branch branch) {
         Commit newCommit = new Commit(description,hash,author,list,branch);
         repository.saveCommit(newCommit);
-        for(File file: list){ //PREGUNTAR ASSOCIATION!
-            Association newAssociation = new Association(file.getObjectId(),newCommit.getObjectId());
-            file.setCommit_file(newAssociation);
-        }
         return newCommit;
     }
 }

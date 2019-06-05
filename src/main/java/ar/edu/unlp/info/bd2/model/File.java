@@ -22,9 +22,6 @@ public class File extends PersistentObject{
     @JoinColumn(name = "file_id")
     private List<FileReview> reviews = new ArrayList<FileReview>();
 
-    @Transient
-    private Association commit_file;
-
     public File() { }
 
     public File(String content, String name) {
