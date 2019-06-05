@@ -63,7 +63,7 @@ public class MongoDBBithubRepository {
   }
 
   public Optional<Branch> getBranchByName(String branchName){
-      MongoCollection<Branch> collection = this.getDB().getCollection("branch", Branch.class);
+      MongoCollection<Branch> collection = this.retrieveCollection("Branch");
       return Optional.ofNullable(collection.find(eq("name", branchName)).first());
   }
 
