@@ -3,6 +3,8 @@ package ar.edu.unlp.info.bd2.repositories;
 import static com.mongodb.client.model.Accumulators.sum;
 import static com.mongodb.client.model.Aggregates.*;
 import static com.mongodb.client.model.Filters.eq;
+
+import ar.edu.unlp.info.bd2.model.Tag;
 import com.mongodb.*;
 
 import ar.edu.unlp.info.bd2.model.*;
@@ -61,6 +63,11 @@ public class MongoDBBithubRepository {
       MongoCollection<Commit> collection = this.retrieveCollection("Commit");
       Commit commit = collection.find(eq("hash",commitHash)).first();
       return Optional.of(commit);
+  }
+
+  public void saveTag(Tag aNewTag){
+      MongoCollection<Tag>  collection = this.retrieveCollection("Tag");
+      collection.insertOne(aNewTag);
   }
 
 

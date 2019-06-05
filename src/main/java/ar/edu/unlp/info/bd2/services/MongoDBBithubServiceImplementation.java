@@ -40,7 +40,14 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Tag createTagForCommit(String commitHash, String name) throws BithubException {
-        return null;
+        Optional<Commit> commitOptional = this.getCommitByHash(commitHash);
+        if(commitOptional.isPresent()){
+            Tag newTag = new Tag(commitHash, name, commitOptional.get());
+            repository.saveTag(newTag);
+            return newTag;
+        }else{
+            throw new BithubException("The commit don't exist.");
+        }
     }
 
     @Override
