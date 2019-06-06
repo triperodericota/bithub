@@ -99,6 +99,8 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     public Commit createCommit(String description, String hash, User author, List<File> list, Branch branch) {
         Commit newCommit = new Commit(description,hash,author,list,branch);
         repository.saveDocument(newCommit,"Commit");
+        repository.update("Branch", "commits", newCommit, branch.getId());
+        System.out.println(branch.getCommits().size());
         return newCommit;
     }
 }

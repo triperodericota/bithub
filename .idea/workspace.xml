@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aba861b1-8e12-4129-825e-58c5c6ce3af7" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/Commit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/MongoDBBithubRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/MongoDBBithubRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/MongoDBBithubServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/MongoDBBithubServiceImplementation.java" afterDir="false" />
     </list>
@@ -18,11 +19,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/Commit.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="537">
+              <caret line="96" column="7" selection-start-line="96" selection-start-column="7" selection-end-line="96" selection-end-column="7" />
+              <folding>
+                <element signature="e#2109#2110#0" expanded="true" />
+                <element signature="e#2135#2136#0" expanded="true" />
+                <element signature="e#2170#2171#0" expanded="true" />
+                <element signature="e#2200#2201#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/MongoDBBithubRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="42" column="19" lean-forward="true" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
+            <state relative-caret-position="267">
+              <caret line="56" column="47" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -30,11 +46,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/BithubServiceTestCase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="76" selection-start-line="76" selection-end-line="76" />
+            <state relative-caret-position="105">
+              <caret line="77" column="3" lean-forward="true" selection-start-line="77" selection-start-column="3" selection-end-line="77" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -42,8 +58,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/MongoDBBithubServiceImplementation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1170">
-              <caret line="100" column="41" selection-start-line="100" selection-start-column="41" selection-end-line="100" selection-end-column="41" />
+            <state relative-caret-position="312">
+              <caret line="102" column="55" lean-forward="true" selection-start-line="102" selection-start-column="55" selection-end-line="102" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/Branch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
             </state>
           </provider>
         </entry>
@@ -67,6 +92,7 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/File.java" />
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/MongoDBBithubRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/Commit.java" />
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/MongoDBBithubServiceImplementation.java" />
       </list>
     </option>
@@ -228,19 +254,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 15h 49m 46s.xml">
-      <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 15h 51m 34s.xml">
-      <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 16h 47m 46s.xml">
-      <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 16h 52m 40s.xml">
       <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
     </history-entry>
     <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 16h 59m 14s.xml">
+      <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 17h 54m 47s.xml">
+      <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 18h 08m 08s.xml">
+      <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 18h 11m 17s.xml">
+      <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 18h 14m 44s.xml">
+      <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 18h 35m 00s.xml">
+      <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 18h 46m 34s.xml">
+      <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 18h 49m 20s.xml">
+      <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MongoDBBithubServiceTestCase - 2019.06.06 at 18h 58m 41s.xml">
       <configuration name="MongoDBBithubServiceTestCase" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -294,28 +335,20 @@
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/BithubServiceTestCase.java</url>
+          <line>37</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/PersistentObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/FileReview.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/Branch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -354,34 +387,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/Commit.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/PersistentObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="14" column="11" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+        <state relative-caret-position="75">
+          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/BithubServiceTestCase.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/Commit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="76" selection-start-line="76" selection-end-line="76" />
+        <state relative-caret-position="537">
+          <caret line="96" column="7" selection-start-line="96" selection-start-column="7" selection-end-line="96" selection-end-column="7" />
+          <folding>
+            <element signature="e#2109#2110#0" expanded="true" />
+            <element signature="e#2135#2136#0" expanded="true" />
+            <element signature="e#2170#2171#0" expanded="true" />
+            <element signature="e#2200#2201#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/Branch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/MongoDBBithubServiceImplementation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="100" column="41" selection-start-line="100" selection-start-column="41" selection-end-line="100" selection-end-column="41" />
+        <state relative-caret-position="312">
+          <caret line="102" column="55" lean-forward="true" selection-start-line="102" selection-start-column="55" selection-end-line="102" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/MongoDBBithubRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="42" column="19" lean-forward="true" selection-start-line="42" selection-start-column="19" selection-end-line="42" selection-end-column="19" />
+        <state relative-caret-position="267">
+          <caret line="56" column="47" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/BithubServiceTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="77" column="3" lean-forward="true" selection-start-line="77" selection-start-column="3" selection-end-line="77" selection-end-column="3" />
         </state>
       </provider>
     </entry>

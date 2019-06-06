@@ -44,11 +44,16 @@ public class MongoDBBithubRepository {
     MongoCollection collection = this.retrieveCollection(className);
     collection.insertOne(obj);
   }
-      //MongoCollection<Branch> collectionBranchs = this.retrieveCollection("Branch");
-      //collectionBranchs.updateOne(eq("name",newCommit.getBranch().getName()),push("commits",newCommit));
+
 
   public Optional getDocument(String field,Object parameter,String className){
       MongoCollection collection = this.retrieveCollection(className);
       return Optional.ofNullable(collection.find(eq(field,parameter)).first());
+  }
+
+  public void update(String collection, String field, Object newDocument, Object document){
+      MongoCollection collectionBranchs = this.retrieveCollection(collection);
+      System.out.println(newDocument);
+      collectionBranchs.updateOne(eq("objectId",document),push(field,newDocument));
   }
 }
