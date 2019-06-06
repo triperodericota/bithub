@@ -61,15 +61,17 @@ public class MongoDBBithubRepository {
 
   public Optional<Commit> getCommitByHash(String commitHash){
       MongoCollection<Commit> collection = this.retrieveCollection("Commit");
-      Commit commit = collection.find(eq("hash",commitHash)).first();
-      return Optional.of(commit);
+      return Optional.ofNullable(collection.find(eq("hash",commitHash)).first());
+  }
+
+  public Optional<Branch> getBranchByName(String branchName){
+      MongoCollection<Branch> collection = this.retrieveCollection("Branch");
+      return Optional.ofNullable(collection.find(eq("name", branchName)).first());
   }
 
   public void saveTag(Tag aNewTag){
       MongoCollection<Tag>  collection = this.retrieveCollection("Tag");
       collection.insertOne(aNewTag);
   }
-
-
 
 }

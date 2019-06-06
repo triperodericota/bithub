@@ -32,7 +32,6 @@ public class Commit extends PersistentObject {
     @OneToOne(mappedBy = "commit",cascade = CascadeType.ALL)
     private Tag tag;
 
-
     public Commit() { }
 
     public Commit (String description, String hash, User author, List<File> files, Branch aBranch){
@@ -104,5 +103,6 @@ public class Commit extends PersistentObject {
     public void setTag(Tag tag) {
         this.tag = tag;
     }
+
 }
 

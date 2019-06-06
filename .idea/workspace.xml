@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="40d8d2eb-4da1-4dee-bcee-1eca6aed4449" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+=======
+    <list default="true" id="db7c9f4e-7bc9-48c2-b757-8d06a6708fea" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+>>>>>>> 8317d85677488197852cd60145e5f4a439f23957
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_3_4.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_7.xml" beforeDir="false" />
@@ -41,6 +48,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_orm_5_0_4_RELEASE.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_test_5_0_4_RELEASE.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_0_4_RELEASE.xml" beforeDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
@@ -52,6 +60,14 @@
       <change beforePath="$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/BithubServiceTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/BithubServiceTestCase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/HibernateBithubTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/HibernateBithubTestCase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/MongoDBBithubServiceTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/MongoDBBithubServiceTestCase.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bd2-2019.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/MongoDBBithubRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/MongoDBBithubRepository.java" afterDir="false" />
+>>>>>>> 8317d85677488197852cd60145e5f4a439f23957
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -61,10 +77,8 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DefaultGradleProjectSettings">
-    <option name="isMigrated" value="true" />
-  </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/BithubServiceTestCase.java">
@@ -131,15 +145,28 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
               <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+=======
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/MongoDBBithubRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="65" column="75" selection-start-line="65" selection-start-column="75" selection-end-line="65" selection-end-column="75" />
+>>>>>>> 8317d85677488197852cd60145e5f4a439f23957
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/PersistentObject.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/HibernateBithubRepository.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="195">
               <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+=======
+            <state relative-caret-position="90">
+              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+>>>>>>> 8317d85677488197852cd60145e5f4a439f23957
             </state>
           </provider>
         </entry>
@@ -162,6 +189,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/Commit.java" />
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/Branch.java" />
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/model/FileReview.java" />
@@ -173,6 +201,9 @@
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/MongoDBBithubRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/MongoDBBithubServiceImplementation.java" />
         <option value="$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/BithubServiceTestCase.java" />
+=======
+        <option value="$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/MongoDBBithubRepository.java" />
+>>>>>>> 8317d85677488197852cd60145e5f4a439f23957
       </list>
     </option>
   </component>
@@ -180,9 +211,6 @@
     <option name="y" value="25" />
     <option name="width" value="1366" />
     <option name="height" value="743" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
     <navigator currentView="PackagesPane" proportions="" version="1">
@@ -229,64 +257,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="bd2" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bd2-2019" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bithub-grupo-20" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="bd2" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bd2-2019" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bithub-grupo-20" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="bd2" type="462c0819:PsiDirectoryNode" />
-              <item name="mongo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bd2-2019" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bithub-grupo-20" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="bd2" type="462c0819:PsiDirectoryNode" />
               <item name="repositories" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bd2-2019" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bithub-grupo-20" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="bd2" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bd2-2019" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bithub-grupo-20" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bd2-2019" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bithub-grupo-20" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bd2-2019" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bithub-grupo-20" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -327,6 +298,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -397,16 +369,20 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="40d8d2eb-4da1-4dee-bcee-1eca6aed4449" name="Default Changelist" comment="" />
-      <created>1559248783583</created>
+      <changelist id="db7c9f4e-7bc9-48c2-b757-8d06a6708fea" name="Default Changelist" comment="" />
+      <created>1559760630132</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< HEAD
       <updated>1559248783583</updated>
       <workItem from="1559692102885" duration="2770000" />
       <workItem from="1559742895871" duration="1281000" />
       <workItem from="1559762845512" duration="340000" />
       <workItem from="1559763359996" duration="3211000" />
       <workItem from="1559772955026" duration="336000" />
+=======
+      <updated>1559760630132</updated>
+>>>>>>> 8317d85677488197852cd60145e5f4a439f23957
     </task>
     <servers />
   </component>
@@ -443,6 +419,7 @@
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27617604" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
@@ -451,6 +428,18 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Learn" order="7" />
+=======
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24980047" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+>>>>>>> 8317d85677488197852cd60145e5f4a439f23957
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.82101804" />
@@ -458,6 +447,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+<<<<<<< HEAD
       <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.4729064" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="9" />
@@ -474,12 +464,23 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Database" order="8" />
+=======
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+>>>>>>> 8317d85677488197852cd60145e5f4a439f23957
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/test/java/ar/edu/unlp/info/bd2/services/HibernateBithubTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -529,13 +530,16 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> 8317d85677488197852cd60145e5f4a439f23957
     <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/HibernateBithubRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-180">
+        <state relative-caret-position="90">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/services/BithubService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-660">
@@ -631,6 +635,12 @@
             <element signature="e#2788#2789#0" expanded="true" />
             <element signature="e#2827#2828#0" expanded="true" />
           </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/ar/edu/unlp/info/bd2/repositories/MongoDBBithubRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="65" column="75" selection-start-line="65" selection-start-column="75" selection-end-line="65" selection-end-column="75" />
+>>>>>>> 8317d85677488197852cd60145e5f4a439f23957
         </state>
       </provider>
     </entry>
