@@ -3,8 +3,14 @@ package ar.edu.unlp.info.bd2.repositories;
 import static com.mongodb.client.model.Accumulators.sum;
 import static com.mongodb.client.model.Aggregates.*;
 import static com.mongodb.client.model.Filters.eq;
+<<<<<<< HEAD
 
 import ar.edu.unlp.info.bd2.model.Tag;
+=======
+import static com.mongodb.client.model.Filters.exists;
+import static com.mongodb.client.model.Updates.push;
+
+>>>>>>> 29d8643ec4a09ea2cafae70c852249b655f919dc
 import com.mongodb.*;
 
 import ar.edu.unlp.info.bd2.model.*;
@@ -39,39 +45,16 @@ public class MongoDBBithubRepository {
       return this.getDB().getCollection(className.toLowerCase(), cls);
   }
 
-  public void saveBranch(Branch newBranch){
-      MongoCollection<Branch> collection = this.retrieveCollection("Branch");
-      collection.insertOne(newBranch);
+  public void saveDocument(Object obj, String className){
+    MongoCollection collection = this.retrieveCollection(className);
+    collection.insertOne(obj);
   }
+      //MongoCollection<Branch> collectionBranchs = this.retrieveCollection("Branch");
+      //collectionBranchs.updateOne(eq("name",newCommit.getBranch().getName()),push("commits",newCommit));
 
-  public void saveUser(User newUser){
-      MongoCollection<User> collection = this.retrieveCollection("User");
-      collection.insertOne(newUser);
-  }
-
-  public void saveFile(File newFile){
-      MongoCollection<File> collection = this.retrieveCollection("File");
-      collection.insertOne(newFile);
-  }
-
-  public void saveCommit(Commit newCommit){
-      MongoCollection<Commit> collection = this.retrieveCollection("Commit");
-      collection.insertOne(newCommit);
-  }
-
-  public Optional<Commit> getCommitByHash(String commitHash){
-      MongoCollection<Commit> collection = this.retrieveCollection("Commit");
-      return Optional.ofNullable(collection.find(eq("hash",commitHash)).first());
-  }
-
-  public Optional<Branch> getBranchByName(String branchName){
-      MongoCollection<Branch> collection = this.retrieveCollection("Branch");
-      return Optional.ofNullable(collection.find(eq("name", branchName)).first());
-  }
-
-  public void saveTag(Tag aNewTag){
-      MongoCollection<Tag>  collection = this.retrieveCollection("Tag");
-      collection.insertOne(aNewTag);
+  public Optional getDocument(String field,Object parameter,String className){
+      MongoCollection collection = this.retrieveCollection(className);
+      return Optional.ofNullable(collection.find(eq(field,parameter)).first());
   }
 
 }
