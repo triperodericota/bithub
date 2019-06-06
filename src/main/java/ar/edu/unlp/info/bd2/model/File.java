@@ -57,11 +57,4 @@ public class File extends PersistentObject{
         this.getReviews().add(aNewFileReview);
     }
 
-    public Association getCommit_file() {
-        return commit_file;
-    }
-
-    public void setCommit_file(Association commit_file) {
-        this.commit_file = commit_file;
-    }
 }

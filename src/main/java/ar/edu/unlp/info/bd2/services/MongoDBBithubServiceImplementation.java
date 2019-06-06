@@ -22,7 +22,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     @Override
     public User createUser(String email, String name) {
         User newUser = new User(email,name);
-        repository.saveUser(newUser);
+        repository.saveChanges(Optional.of(newUser), "User");
         return newUser;
     }
 
@@ -34,7 +34,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     @Override
     public Branch createBranch(String name) {
         Branch newBranch = new Branch(name);
-        repository.saveBranch(newBranch);
+        repository.saveChanges(Optional.of(newBranch),"Branch");
         return newBranch;
     }
 
@@ -45,13 +45,13 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Commit> getCommitByHash(String commitHash) {
-        return repository.getCommitByHash(commitHash);
+        return repository.getDocument("hash",Optional.of(commitHash), "Commit");
     }
 
     @Override
     public File createFile(String name, String content) {
         File newFile = new File(name,content);
-        repository.saveFile(newFile);
+        repository.saveChanges(Optional.of(newFile),"File");
         return newFile;
     }
 
@@ -92,13 +92,13 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Branch> getBranchByName(String branchName) {
-        return repository.getBranchByName(branchName);
+        return repository.getDocument("name",Optional.of(branchName),"Branch");
     }
 
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> list, Branch branch) {
         Commit newCommit = new Commit(description,hash,author,list,branch);
-        repository.saveCommit(newCommit);
+        repository.saveChanges(Optional.of(newCommit),"Commit");
         return newCommit;
     }
 }
