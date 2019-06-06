@@ -40,7 +40,7 @@ public class MongoDBBithubRepository {
       return this.getDB().getCollection(className.toLowerCase(), cls);
   }
 
-  public void saveChanges(Object obj, String className){
+  public void saveDocument(Object obj, String className){
     MongoCollection collection = this.retrieveCollection(className);
     collection.insertOne(obj);
   }
