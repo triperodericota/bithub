@@ -64,7 +64,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Tag> getTagByName(String tagName) {
-        return Optional.empty();
+        return repository.getDocument("name", tagName, "Tag");
     }
 
     @Override
