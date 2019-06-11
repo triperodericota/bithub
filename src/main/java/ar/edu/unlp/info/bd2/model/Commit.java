@@ -91,10 +91,10 @@ public class Commit extends PersistentObject {
         this.hash = hash;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return " --- files for commit : " + this.files.toString();
-    }
+    }*/
 
     public Tag getTag() {
         return tag;

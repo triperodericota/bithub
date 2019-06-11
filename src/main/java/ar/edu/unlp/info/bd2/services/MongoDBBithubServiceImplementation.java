@@ -22,7 +22,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     @Override
     public User createUser(String email, String name) {
         User newUser = new User(email,name);
-        repository.saveChanges(Optional.of(newUser), "User");
+        repository.saveDocument(newUser, "User");
         return newUser;
     }
 
@@ -34,7 +34,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     @Override
     public Branch createBranch(String name) {
         Branch newBranch = new Branch(name);
-        repository.saveChanges(Optional.of(newBranch),"Branch");
+        repository.saveDocument(newBranch,"Branch");
         return newBranch;
     }
 
@@ -43,7 +43,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
         Optional<Commit> commitOptional = this.getCommitByHash(commitHash);
         if(commitOptional.isPresent()){
             Tag newTag = new Tag(commitHash, name, commitOptional.get());
-            repository.saveTag(newTag);
+            repository.saveDocument(newTag, "Tag");
             return newTag;
         }else{
             throw new BithubException("The commit don't exist.");
@@ -52,13 +52,13 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Commit> getCommitByHash(String commitHash) {
-        return repository.getDocument("hash",Optional.of(commitHash), "Commit");
+        return repository.getDocument("hash",commitHash, "Commit");
     }
 
     @Override
     public File createFile(String name, String content) {
         File newFile = new File(name,content);
-        repository.saveChanges(Optional.of(newFile),"File");
+        repository.saveDocument(newFile,"File");
         return newFile;
     }
 
@@ -99,13 +99,15 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Branch> getBranchByName(String branchName) {
-        return repository.getDocument("name",Optional.of(branchName),"Branch");
+        return repository.getDocument("name",branchName,"Branch");
     }
 
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> list, Branch branch) {
         Commit newCommit = new Commit(description,hash,author,list,branch);
-        repository.saveChanges(Optional.of(newCommit),"Commit");
+        repository.saveDocument(newCommit,"Commit");
+        repository.update("Branch", "commits", newCommit, branch.getId());
+        System.out.println(branch.getCommits().size());
         return newCommit;
     }
 }

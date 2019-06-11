@@ -3,14 +3,13 @@ package ar.edu.unlp.info.bd2.repositories;
 import static com.mongodb.client.model.Accumulators.sum;
 import static com.mongodb.client.model.Aggregates.*;
 import static com.mongodb.client.model.Filters.eq;
-<<<<<<< HEAD
+
 
 import ar.edu.unlp.info.bd2.model.Tag;
-=======
+
 import static com.mongodb.client.model.Filters.exists;
 import static com.mongodb.client.model.Updates.push;
 
->>>>>>> 29d8643ec4a09ea2cafae70c852249b655f919dc
 import com.mongodb.*;
 
 import ar.edu.unlp.info.bd2.model.*;
@@ -49,12 +48,17 @@ public class MongoDBBithubRepository {
     MongoCollection collection = this.retrieveCollection(className);
     collection.insertOne(obj);
   }
-      //MongoCollection<Branch> collectionBranchs = this.retrieveCollection("Branch");
-      //collectionBranchs.updateOne(eq("name",newCommit.getBranch().getName()),push("commits",newCommit));
+
 
   public Optional getDocument(String field,Object parameter,String className){
       MongoCollection collection = this.retrieveCollection(className);
       return Optional.ofNullable(collection.find(eq(field,parameter)).first());
+  }
+
+  public void update(String collection, String field, Object newDocument, Object document){
+      MongoCollection collectionBranchs = this.retrieveCollection(collection);
+      System.out.println(newDocument);
+      collectionBranchs.updateOne(eq("objectId",document),push(field,newDocument));
   }
 
 }
