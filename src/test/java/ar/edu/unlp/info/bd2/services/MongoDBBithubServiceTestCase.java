@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 public class MongoDBBithubServiceTestCase extends BithubServiceTestCase<ObjectId> {
 
-  @Autowired private MongoClient client;
+  @Autowired
+  private MongoClient client;
 
   @BeforeEach
   public void setUp() {

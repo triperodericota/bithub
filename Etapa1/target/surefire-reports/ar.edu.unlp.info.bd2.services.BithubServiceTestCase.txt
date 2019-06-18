@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: ar.edu.unlp.info.bd2.services.BithubServiceTestCase
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 17.549 sec <<< FAILURE! - in ar.edu.unlp.info.bd2.services.BithubServiceTestCase
+testCreateBranchAndCommit  Time elapsed: 2.394 sec  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <2> but was: <0>
+	at ar.edu.unlp.info.bd2.services.BithubServiceTestCase.testCreateBranchAndCommit(BithubServiceTestCase.java:55)
+
