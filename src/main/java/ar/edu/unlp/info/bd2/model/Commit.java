@@ -1,5 +1,7 @@
 package ar.edu.unlp.info.bd2.model;
 
+import org.bson.codecs.pojo.annotations.BsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,7 @@ public class Commit extends PersistentObject {
     @OneToMany(/*fetch = FetchType.LAZY,*/mappedBy = "commit", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<File> files = new ArrayList<File>();
 
+    @BsonIgnore
     @ManyToOne
     @JoinColumn(name="branch_id")
     private Branch branch;

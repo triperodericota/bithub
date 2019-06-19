@@ -57,22 +57,14 @@ public class MongoDBBithubRepository {
 
   }
 
-
   public Optional getDocument(String field,Object parameter,String className){
       MongoCollection collection = this.retrieveCollection(className);
       return Optional.ofNullable(collection.find(eq(field,parameter)).first());
   }
 
-  /*  CAMBIAR ESTE UPDATE . USAR DIRECTAMENTE UN REPLACE CON EL OBJETO BRANCH ACTUALIZADO */
-  public void update(String collection, String field, Object newDocument, Object document){
-      MongoCollection collectionBranchs = this.retrieveCollection(collection);
-      System.out.println(newDocument);
-      collectionBranchs.updateOne(eq("objectId",document),push(field,newDocument));
-  }
-
-  public void replaceDocument(PersistentObject olderDocument, PersistentObject updatedDocument, String className){
+  public void replaceDocument(PersistentObject updatedDocument, String className){
       MongoCollection collection = this.retrieveCollection(className);
-      collection.replaceOne(eq("objectId", olderDocument.getObjectId()), updatedDocument);
+      collection.replaceOne(eq("objectId", updatedDocument.getId()), updatedDocument);
   }
 
 }

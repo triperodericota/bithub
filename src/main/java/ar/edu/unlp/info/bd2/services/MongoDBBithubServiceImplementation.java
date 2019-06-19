@@ -105,14 +105,11 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> list, Branch branch) {
         Commit newCommit = new Commit(description,hash,author,list,branch);
-        Branch updated_branch = new Branch(branch.getName(), branch.getCommits());
-        updated_branch.addCommit(newCommit);
+        branch.addCommit(newCommit);
         repository.saveDocument(newCommit,"Commit");
         Association commit_branch = new Association(newCommit.getObjectId(), newCommit.getBranch().getObjectId());
         repository.saveAssociation("commit_branch", commit_branch);
-        /*repository.update("Branch", "commits", newCommit, branch.getId());*/
-        repository.replaceDocument(branch, updated_branch, "Branch");
-        System.out.println(branch.getCommits().size());
+        repository.replaceDocument(branch, "Branch");
         return newCommit;
     }
 
