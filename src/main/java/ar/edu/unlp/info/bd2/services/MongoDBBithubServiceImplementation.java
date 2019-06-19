@@ -34,7 +34,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     @Override
     public Branch createBranch(String name) {
         Branch newBranch = new Branch(name);
-        repository.saveDocument(newBranch,"Branch");
+        repository.newDocument(newBranch,"Branch");
         return newBranch;
     }
 
@@ -104,10 +104,28 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> list, Branch branch) {
-        Commit newCommit = new Commit(description,hash,author,list,null);
+
+        Commit newCommit = new Commit(description,hash,author,list, new Branch());
         repository.saveDocument(newCommit,"Commit");
-        repository.saveDocument(new Association(newCommit.getObjectId(),branch.getObjectId()), "Asociacion");
-        //repository.update("Branch", "commits", newCommit, branch.getId());
+        branch.addCommit(newCommit);
+        repository.newDocument(branch,"Branch");
         return newCommit;
+        //Commit newCommit = new Commit(description,hash,author,list,new Branch());
+        //Branch updated_branch = new Branch(branch.getName(), branch.getCommits());
+        //repository.saveDocument(newCommit,"Commit");
+        //updated_branch.addCommit(newCommit);
+        //Association commit_branch = new Association(newCommit.getObjectId(), newCommit.getBranch().getObjectId());
+        //repository.saveAssociation("commit_branch", commit_branch);
+        /*repository.update("Branch", "commits", newCommit, branch.getId());*/
+        //repository.replaceDocument(branch, updated_branch, "Branch");
+        //System.out.println(branch.getCommits().size());
+        //return newCommit;
     }
+
+
 }
+
+/*
+    CREAR UNA COLECCION POR CADA TIPO DE ASOCIACIÓN: EJ => COMMIT-FILE, BRANCH-COMMIT
+
+ */

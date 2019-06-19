@@ -20,6 +20,11 @@ public class Branch extends PersistentObject {
         this.setName(name);
     }
 
+    public Branch(String name, List<Commit> commits){
+        this.setName(name);
+        this.setCommits(commits);
+    }
+
     public String getName() {
         return name;
     }
@@ -29,6 +34,10 @@ public class Branch extends PersistentObject {
     }
 
     public List<Commit> getCommits() { return this.commits; }
+
+    public void setCommits(List<Commit> commits) {
+        this.commits = commits;
+    }
 
     public void addCommit(Commit aCommit){
         this.getCommits().add(aCommit);
