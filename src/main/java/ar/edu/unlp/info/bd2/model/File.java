@@ -24,7 +24,7 @@ public class File extends PersistentObject{
 
     public File() { }
 
-    public File(String content, String name) {
+    public File(String name, String content) {
         this.setFilename(name);
         this.setContent(content);
     }

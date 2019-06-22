@@ -9,17 +9,13 @@ import java.util.List;
 @Entity
 public class Commit extends PersistentObject {
 
-    /*@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "commit_id")
-    private Long id;
-*/
     @Column
     private String message;
 
     @Column
     private String hash;
 
+    @BsonIgnore
     @ManyToOne
     @JoinColumn(name="user_id")
     private User author;

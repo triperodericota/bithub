@@ -63,8 +63,11 @@ public class MongoDBBithubRepository {
   }
 
   public void replaceDocument(PersistentObject updatedDocument, String className){
+     /* Optional<Branch> b = this.getDocument("objectId", updatedDocument.getId(), "Branch");*/
+      System.out.println("--- updatedDocument ==> " + updatedDocument.getClass().toString() + updatedDocument.getId() );
       MongoCollection collection = this.retrieveCollection(className);
       collection.replaceOne(eq("objectId", updatedDocument.getId()), updatedDocument);
+      System.out.println("--- updatedDocument ==> " + updatedDocument.getClass().toString() + updatedDocument.getId() );
   }
 
 }
