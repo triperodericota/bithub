@@ -28,7 +28,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<User> getUserByEmail(String email) {
-        return Optional.empty();
+        return repository.getDocument("email", email, "User");
     }
 
     @Override
@@ -57,7 +57,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public File createFile(String content, String name) {
-        File newFile = new File(content,name);
+        File newFile = new File(name,content);
         repository.saveDocument(newFile,"File");
         return newFile;
     }
@@ -90,7 +90,9 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public List<Commit> getAllCommitsForUser(ObjectId userId) {
-        return null;
+        Optional<User> user = repository.getDocument("_id", userId, "User");
+        System.out.println(" -- User: " + user.get().getName() + " -- user commits => " + user.get().getCommits().toString());
+        return user.get().getCommits();
     }
 
     @Override
@@ -112,11 +114,15 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     public Commit createCommit(String description, String hash, User author, List<File> list, Branch branch) {
         System.out.println(branch.getObjectId());
         Commit newCommit = new Commit(description,hash,author,list,branch);
-        repository.saveDocument(newCommit,"Commit");
         branch.addCommit(newCommit);
+        author.addCommit(newCommit);
+        repository.saveDocument(newCommit,"Commit");
         Association commit_branch = new Association(newCommit.getObjectId(), newCommit.getBranch().getObjectId());
+        Association commit_user = new Association(newCommit.getObjectId(), newCommit.getAuthor().getObjectId());
         repository.saveAssociation("commit_branch", commit_branch);
+        repository.saveAssociation("commit_author", commit_user);
         repository.replaceDocument(branch, "Branch");
+        repository.replaceDocument(author, "User");
         return newCommit;
 
     }

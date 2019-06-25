@@ -182,10 +182,10 @@ public abstract class BithubServiceTestCase<T> {
     assertEquals(2, commits.size());
     assertEquals(
         1, commits.stream().filter(s -> this.getId(s).equals(this.getId(commitInDevelop))).count());
-    assertEquals(
+      assertEquals(
         1, commits.stream().filter(s -> this.getId(s).equals(this.getId(commitInMaster))).count());
-  }
-
+  }*/
+/*
   @Test
   void testGetTotalNumberOfCommitsPerUser() {
     Branch master = this.service.createBranch("master");
