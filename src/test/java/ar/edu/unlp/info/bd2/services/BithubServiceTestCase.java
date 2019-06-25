@@ -34,7 +34,7 @@ public abstract class BithubServiceTestCase<T> {
   public void setUp() {
     this.service = this.getService();
   }
-
+/*
   @Test
   public void testCreateBranchAndCommit() {
     Branch master = this.service.createBranch("master");
@@ -77,8 +77,6 @@ public abstract class BithubServiceTestCase<T> {
     assertEquals(1, branchFromDb.get().getCommits().size());
   }
 
-
- /*
   @Test
   public void testCreateTag() throws BithubException {
     Branch master = this.service.createBranch("master");
@@ -100,7 +98,7 @@ public abstract class BithubServiceTestCase<T> {
 
     assertFalse(this.service.getTagByName("fakeTag123").isPresent());
   }
-
+*/
   @Test
   void testCreateReview() throws BithubException {
     Branch master = this.service.createBranch("master");
@@ -108,21 +106,18 @@ public abstract class BithubServiceTestCase<T> {
 
     User user1 = this.service.createUser("user1@bithub.bd2.info.unlp.edu.ar", "User One");
     User user2 = this.service.createUser("user2@bithub.bd2.info.unlp.edu.ar", "User Two");
-
+/*
     File fileInMasterBranch =
-        this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
+            this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
     this.service.createCommit(
-        "Initial commit", "ab4f19z", user1, Collections.singletonList(fileInMasterBranch), master);
-
+            "Initial commit", "ab4f19z", user1, Collections.singletonList(fileInMasterBranch), master);
+  */
     File fileInDevelopBranch =
-        this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
+            this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
     this.service.createCommit(
-        "Initial commit",
-        "ab4f19z",
-        user1,
-        Collections.singletonList(fileInDevelopBranch),
-        develop);
-
+            "Initial commit","ab4f19z", user1, Collections.singletonList(fileInDevelopBranch), develop);
+  }
+/*
     Review review = this.service.createReview(master, user2);
     assertNotNull(this.getId(review));
     assertEquals(this.getId(master), this.getId(review.getBranch()));

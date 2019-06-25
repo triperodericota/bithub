@@ -34,7 +34,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     @Override
     public Branch createBranch(String name) {
         Branch newBranch = new Branch(name);
-        repository.newDocument(newBranch,"Branch");
+        repository.saveDocument(newBranch,"Branch");
         return newBranch;
     }
 
@@ -56,8 +56,8 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     }
 
     @Override
-    public File createFile(String name, String content) {
-        File newFile = new File(name,content);
+    public File createFile(String content, String name) {
+        File newFile = new File(content,name);
         repository.saveDocument(newFile,"File");
         return newFile;
     }
@@ -69,7 +69,13 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Review createReview(Branch branch, User user) {
-        return null;
+        Review newReview = new Review(branch, user);
+        repository.saveDocument(newReview,"Review");
+        Association review_user= new Association(newReview.getObjectId(),newReview.getAuthor().getObjectId());
+        repository.saveAssociation("review_user",review_user);
+        //Association review_branch = new Association(newReview.getObjectId(),newReview.getBranch().getObjectId());
+        //repository.saveAssociation("review_branch",review_branch);
+        return newReview;
     }
 
     @Override
@@ -104,25 +110,16 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> list, Branch branch) {
-
-        Commit newCommit = new Commit(description,hash,author,list, new Branch());
+        System.out.println(branch.getObjectId());
+        Commit newCommit = new Commit(description,hash,author,list,branch);
         repository.saveDocument(newCommit,"Commit");
         branch.addCommit(newCommit);
-        repository.newDocument(branch,"Branch");
+        Association commit_branch = new Association(newCommit.getObjectId(), newCommit.getBranch().getObjectId());
+        repository.saveAssociation("commit_branch", commit_branch);
+        repository.replaceDocument(branch, "Branch");
         return newCommit;
-        //Commit newCommit = new Commit(description,hash,author,list,new Branch());
-        //Branch updated_branch = new Branch(branch.getName(), branch.getCommits());
-        //repository.saveDocument(newCommit,"Commit");
-        //updated_branch.addCommit(newCommit);
-        //Association commit_branch = new Association(newCommit.getObjectId(), newCommit.getBranch().getObjectId());
-        //repository.saveAssociation("commit_branch", commit_branch);
-        /*repository.update("Branch", "commits", newCommit, branch.getId());*/
-        //repository.replaceDocument(branch, updated_branch, "Branch");
-        //System.out.println(branch.getCommits().size());
-        //return newCommit;
+
     }
-
-
 }
 
 /*

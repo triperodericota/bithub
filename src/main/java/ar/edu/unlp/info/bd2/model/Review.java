@@ -1,5 +1,7 @@
 package ar.edu.unlp.info.bd2.model;
 
+import org.bson.codecs.pojo.annotations.BsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +9,12 @@ import java.util.List;
 @Entity
 public class Review extends PersistentObject {
 
-
+    @BsonIgnore
     @ManyToOne
     @JoinColumn(name="id_user")
     private User author;
 
+    @BsonIgnore
     @ManyToOne
     @JoinColumn(name="id_branch")
     private Branch branch;

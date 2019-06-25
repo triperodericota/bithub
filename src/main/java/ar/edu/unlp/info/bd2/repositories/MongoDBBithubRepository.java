@@ -64,19 +64,23 @@ public class MongoDBBithubRepository {
 
   }
 
-
   public Optional getDocument(String field,Object parameter,String className){
       MongoCollection collection = this.retrieveCollection(className);
       return Optional.ofNullable(collection.find(eq(field,parameter)).first());
   }
 
-  public void newDocument(PersistentObject olderDocument, String className){
+  /*public void newDocument(PersistentObject olderDocument, String className){
       MongoCollection collection = this.retrieveCollection(className);
       if(olderDocument.getId()!=null){
           collection.replaceOne(eq("objectId", olderDocument.getId()), olderDocument, new ReplaceOptions().upsert(false));
       }else{
           collection.insertOne(olderDocument);
-      }
+      }*/
+
+  public void replaceDocument(PersistentObject updatedDocument, String className){
+      MongoCollection collection = this.retrieveCollection(className);
+      System.out.println(updatedDocument.getObjectId());
+      collection.replaceOne(eq("objectId", updatedDocument.getId()), updatedDocument);
   }
 
 }

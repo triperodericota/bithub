@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="bithub-grupo-20" />
         <module name="bd2-2019" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="bd2-2019" target="1.8" />
+      <module name="bithub-grupo-20" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
