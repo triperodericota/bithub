@@ -1,6 +1,7 @@
 package ar.edu.unlp.info.bd2.services;
 
 import ar.edu.unlp.info.bd2.model.*;
+import ar.edu.unlp.info.bd2.repositories.spring.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -10,15 +11,24 @@ import java.util.Optional;
 
 public class SpringDataBithubService implements BithubService<Long> {
 
-    @Autowired
-    private SpringDataBithubService
+    @Autowired private UserBithubRepository userRepository;
+
+    @Autowired private BranchBithubRepository branchRepository;
+
+    @Autowired private FileBithubRepository fileRepository;
+
+    @Autowired private CommitBithubRepository commitRepository;
+
+    @Autowired private TagBithubRepository tagRepository;
 
     public SpringDataBithubService(){
     }
 
     @Override
     public User createUser(String email, String name) {
-        return null;
+        User newUser = new User(email,name);
+        userRepository.save(newUser);
+        return newUser;
     }
 
     @Override
@@ -28,32 +38,48 @@ public class SpringDataBithubService implements BithubService<Long> {
 
     @Override
     public Branch createBranch(String name) {
-        return null;
+        Branch newBranch = new Branch(name);
+        branchRepository.save(newBranch);
+        return newBranch;
     }
 
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> files, Branch branch) {
-        return null;
+        Commit newCommit = new Commit(description,hash,author,files,branch);
+        commitRepository.save(newCommit);
+        branch.addCommit(newCommit);
+        branchRepository.save(branch);
+        return newCommit;
     }
 
     @Override
     public Tag createTagForCommit(String commitHash, String name) throws BithubException {
-        return null;
+        Optional<Commit> commitOptional= this.getCommitByHash(commitHash);
+        if(commitOptional.isPresent()){
+            Tag newTag= new Tag(commitHash,name,commitOptional.get());
+            tagRepository.save(newTag);
+            return newTag;
+        }else{
+            throw new BithubException("The commit don't exist.");
+        }
     }
 
     @Override
     public Optional<Commit> getCommitByHash(String commitHash) {
-        return Optional.empty();
+        return (commitRepository.findByHash(commitHash));
+
     }
 
     @Override
-    public File createFile(String name, String content) {
-        return null;
+    public File createFile(String content, String name) {
+        File newFile = new File(name,content);
+        fileRepository.save(newFile);
+        return newFile;
     }
 
     @Override
     public Optional<Tag> getTagByName(String tagName) {
-        return Optional.empty();
+        return tagRepository.findByName(tagName);
     }
 
     @Override
@@ -88,6 +114,6 @@ public class SpringDataBithubService implements BithubService<Long> {
 
     @Override
     public Optional<Branch> getBranchByName(String branchName) {
-        return Optional.empty();
+        return branchRepository.findByName(branchName);
     }
 }
