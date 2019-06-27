@@ -83,7 +83,7 @@ public class SpringDataBithubService implements BithubService<Long> {
 
     @Override
     public File createFile(String content, String name) {
-        File newFile = new File(name,content);
+        File newFile = new File(content,name);
         fileRepository.save(newFile);
         return newFile;
     }

@@ -12,4 +12,7 @@ create database bd2_grupo20; drop user if exists 'cliente'@'$host_ip';
  create user 'cliente'@'$host_ip' identified by 'bd2';
  grant all privileges on bd2_grupo20.* TO 'cliente'@'$host_ip';"
 
+service mongod start
+
+echo "Se inicio el servicio de Mongo"
 echo "Se le asignó el usuario 'cliente' con la contraseña 'bd2'"

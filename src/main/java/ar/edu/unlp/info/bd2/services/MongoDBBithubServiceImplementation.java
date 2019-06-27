@@ -66,7 +66,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public File createFile(String content, String name) {
-        File newFile = new File(name,content);
+        File newFile = new File(content,name);
         repository.saveDocument(newFile,"File");
         return newFile;
     }

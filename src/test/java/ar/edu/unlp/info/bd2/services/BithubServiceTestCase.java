@@ -142,7 +142,7 @@ public abstract class BithubServiceTestCase<T> {
     assertEquals(fileReview.getComment(), freshReview.get().getReviews().get(0).getComment());
     assertEquals(fileReview.getLineNumber(), freshReview.get().getReviews().get(0).getLineNumber());
   }
-
+/*
   @Test
   void testGetCommitsFromUser() {
     Branch master = this.service.createBranch("master");
@@ -241,5 +241,5 @@ public abstract class BithubServiceTestCase<T> {
         users.stream().anyMatch(u -> u.getEmail().equals("user2@bithub.bd2.info.unlp.edu.ar")));
     assertFalse(
         users.stream().anyMatch(u -> u.getEmail().equals("user3@bithub.bd2.info.unlp.edu.ar")));
-  }
+  }*/
 }
