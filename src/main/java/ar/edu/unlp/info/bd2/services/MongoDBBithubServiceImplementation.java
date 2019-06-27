@@ -2,13 +2,13 @@ package ar.edu.unlp.info.bd2.services;
 
 import ar.edu.unlp.info.bd2.mongo.Association;
 import ar.edu.unlp.info.bd2.repositories.MongoDBBithubRepository;
+import com.mongodb.Block;
+import com.mongodb.client.FindIterable;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import ar.edu.unlp.info.bd2.model.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class MongoDBBithubServiceImplementation implements BithubService<ObjectId>{
 
@@ -28,7 +28,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<User> getUserByEmail(String email) {
-        return repository.getDocument("email", email, "User");
+        return Optional.ofNullable((User) repository.getDocument("email", email, "User").first());
     }
 
     @Override
@@ -52,7 +52,16 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Commit> getCommitByHash(String commitHash) {
-        return repository.getDocument("hash",commitHash, "Commit");
+        Optional OptCommit = Optional.ofNullable((repository.getDocument("hash",commitHash, "Commit")).first());
+        if(OptCommit.isPresent()) {
+            Commit commit = (Commit) OptCommit.get();
+            List files = new ArrayList();
+            repository.getDocument("commit._id", commit.getObjectId(), "File").into(files);
+            commit.setFiles(files);
+            return (Optional.ofNullable(commit));
+        }else {
+            return OptCommit;
+        }
     }
 
     @Override
@@ -64,35 +73,57 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Tag> getTagByName(String tagName) {
-        return repository.getDocument("name", tagName, "Tag");
+        return Optional.ofNullable((Tag) repository.getDocument("name", tagName, "Tag").first());
     }
 
     @Override
     public Review createReview(Branch branch, User user) {
         Review newReview = new Review(branch, user);
         repository.saveDocument(newReview,"Review");
-        Association review_user= new Association(newReview.getObjectId(),newReview.getAuthor().getObjectId());
-        repository.saveAssociation("review_user",review_user);
-        //Association review_branch = new Association(newReview.getObjectId(),newReview.getBranch().getObjectId());
-        //repository.saveAssociation("review_branch",review_branch);
+        Association review_branch = new Association(newReview.getObjectId(),newReview.getBranch().getObjectId());
+        repository.saveAssociation("review_branch",review_branch);
         return newReview;
     }
 
     @Override
     public FileReview addFileReview(Review review, File file, int lineNumber, String comment) throws BithubException {
-        return null;
+        if (file.getCommit().getBranch().equals(review.getBranch())) {
+            FileReview newFileReview = new FileReview(review, file, lineNumber, comment);
+            repository.saveDocument(newFileReview, "FileReview");
+            return newFileReview;
+        }else{
+            throw new BithubException("The review's branch must be equals to file's branch");
+        }
     }
 
     @Override
     public Optional<Review> getReviewById(ObjectId id) {
-        return Optional.empty();
+        Review review= (Review) repository.getDocument("_id",id, "Review").first();
+        List filereviews= new ArrayList();
+        repository.getDocument("review._id",id,"FileReview").into(filereviews);
+        review.setReviews(filereviews);
+        return Optional.of(review);
     }
 
     @Override
     public List<Commit> getAllCommitsForUser(ObjectId userId) {
-        Optional<User> user = repository.getDocument("_id", userId, "User");
-        System.out.println(" -- User: " + user.get().getName() + " -- user commits => " + user.get().getCommits().toString());
-        return user.get().getCommits();
+        /*Optional<User> user = repository.getDocument("_id", userId, "User");*/
+        System.out.println(userId);
+        FindIterable<Association> commitsForUser = repository.getAssociations("destination", userId, "commit_author");
+        List<ObjectId> commits_ids = new ArrayList<ObjectId>();
+        List<Commit> commits = new ArrayList<Commit>();;
+       /* Block<Association> retrieveCommits;
+
+        retrieveCommits = new Block<Association>() {
+            @Override
+            public void apply(final Association commit_author){
+                commits_ids.add(commit_author.getSource());
+            }
+        };
+*/
+        commitsForUser.forEach((Block<Association>) commit_author -> commits_ids.add(commit_author.getSource()));
+        System.out.println(commits_ids.toString());
+        return commits;
     }
 
     @Override
@@ -107,22 +138,23 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Branch> getBranchByName(String branchName) {
-        return repository.getDocument("name",branchName,"Branch");
+        return Optional.ofNullable((Branch) repository.getDocument("name",branchName,"Branch").first());
     }
 
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> list, Branch branch) {
-        System.out.println(branch.getObjectId());
         Commit newCommit = new Commit(description,hash,author,list,branch);
         branch.addCommit(newCommit);
-        author.addCommit(newCommit);
         repository.saveDocument(newCommit,"Commit");
         Association commit_branch = new Association(newCommit.getObjectId(), newCommit.getBranch().getObjectId());
         Association commit_user = new Association(newCommit.getObjectId(), newCommit.getAuthor().getObjectId());
         repository.saveAssociation("commit_branch", commit_branch);
         repository.saveAssociation("commit_author", commit_user);
         repository.replaceDocument(branch, "Branch");
-        repository.replaceDocument(author, "User");
+        for (File file: list){
+            file.setCommit(newCommit);
+            repository.replaceDocument(file, "File");
+        }
         return newCommit;
 
     }

@@ -9,19 +9,17 @@ import java.util.List;
 @Entity
 public class Review extends PersistentObject {
 
-    @BsonIgnore
     @ManyToOne
     @JoinColumn(name="id_user")
     private User author;
 
-    @BsonIgnore
     @ManyToOne
     @JoinColumn(name="id_branch")
     private Branch branch;
 
     @OneToMany
     @JoinColumn(name="review_id")
-    private List<FileReview> files = new ArrayList<FileReview>();
+    private List<FileReview> reviews = new ArrayList<FileReview>();
 
     public Review() {
     }
@@ -52,7 +50,11 @@ public class Review extends PersistentObject {
     }
 
     public List<FileReview> getReviews(){
-        return this.files;
+        return this.reviews;
+    }
+
+    public void setReviews(List<FileReview> reviews){
+        this.reviews = reviews;
     }
 }
 

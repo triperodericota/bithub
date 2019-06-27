@@ -1,5 +1,8 @@
 package ar.edu.unlp.info.bd2.config;
 
+import ar.edu.unlp.info.bd2.repositories.HibernateBithubRepository;
+import ar.edu.unlp.info.bd2.services.BithubService;
+import ar.edu.unlp.info.bd2.services.HibernateBithubService;
 import java.util.Properties;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp.BasicDataSource;
@@ -13,6 +16,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 public class HibernateConfiguration {
+
+  @Bean
+  public BithubService hibernateService() {
+    HibernateBithubRepository repository = this.createRepository();
+    return new HibernateBithubService(repository);
+  }
+
+  @Bean
+  public HibernateBithubRepository createRepository() {
+    return new HibernateBithubRepository();
+  }
 
   @Bean
   public LocalSessionFactoryBean sessionFactory() {

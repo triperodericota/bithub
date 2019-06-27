@@ -34,40 +34,43 @@ import javax.transaction.Transactional;
 
 public class MongoDBBithubRepository {
 
-  @Autowired
-  private MongoClient client;
+    @Autowired
+    private MongoClient client;
 
-  private MongoDatabase getDB(){
+    private MongoDatabase getDB(){
         return client.getDatabase("bd2");
-  }
+    }
 
-  private MongoCollection retrieveCollection(String className){
-      String fullyClassName = "ar.edu.unlp.info.bd2.model." + className;
-      Class<?> cls = null;
-      try {
-          cls = Class.forName(fullyClassName);
-      } catch (ClassNotFoundException e){
-          e.printStackTrace();
-      }
+    private MongoCollection retrieveCollection(String className){
+        String fullyClassName = "ar.edu.unlp.info.bd2.model." + className;
+        Class<?> cls = null;
+        try {
+            cls = Class.forName(fullyClassName);
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();
+        }
 
-      return this.getDB().getCollection(className.toLowerCase(), cls);
-  }
+        return this.getDB().getCollection(className.toLowerCase(), cls);
+    }
 
-  public void saveDocument(Object obj, String className){
-    MongoCollection collection = this.retrieveCollection(className);
-    collection.insertOne(obj);
-  }
+    private MongoCollection retrieveAssociationCollection(String associationName){
+        return this.getDB().getCollection(associationName, Association.class);
+    }
 
-  public void saveAssociation(String associationName, Association association){
-      MongoCollection collection = this.getDB().getCollection(associationName, Association.class);
-      collection.insertOne(association);
+    public void saveDocument(Object obj, String className){
+        MongoCollection collection = this.retrieveCollection(className);
+        collection.insertOne(obj);
+    }
 
-  }
+    public void saveAssociation(String associationName, Association association){
+        MongoCollection collection = this.retrieveAssociationCollection(associationName);
+        collection.insertOne(association);
+    }
 
-  public Optional getDocument(String field,Object parameter,String className){
-      MongoCollection collection = this.retrieveCollection(className);
-      return Optional.ofNullable(collection.find(eq(field,parameter)).first());
-  }
+    public FindIterable getDocument(String field,Object parameter,String modelName){
+        MongoCollection collection = this.retrieveCollection(modelName);
+        return collection.find(eq(field,parameter));
+    }
 
   /*public void newDocument(PersistentObject olderDocument, String className){
       MongoCollection collection = this.retrieveCollection(className);
@@ -77,12 +80,15 @@ public class MongoDBBithubRepository {
           collection.insertOne(olderDocument);
       }*/
 
-  public void replaceDocument(PersistentObject updatedDocument, String className){
-     /* Optional<Branch> b = this.getDocument("objectId", updatedDocument.getId(), "Branch");*/
-      System.out.println("--- updatedDocument ==> " + updatedDocument.getClass().toString() + updatedDocument.getId() );
-      MongoCollection collection = this.retrieveCollection(className);
-      collection.replaceOne(eq("objectId", updatedDocument.getId()), updatedDocument);
-      System.out.println("--- updatedDocument ==> " + updatedDocument.getClass().toString() + updatedDocument.getId() );
-  }
+    public FindIterable<Association> getAssociations(String field,Object parameter, String associationName){
+        MongoCollection collection = this.retrieveAssociationCollection(associationName);
+        return collection.find(eq(field,parameter));
+    }
+
+    public void replaceDocument(PersistentObject updatedDocument, String className){
+        MongoCollection collection = this.retrieveCollection(className);
+        collection.replaceOne(eq("_id", updatedDocument.getObjectId()), updatedDocument);
+    }
+
 
 }

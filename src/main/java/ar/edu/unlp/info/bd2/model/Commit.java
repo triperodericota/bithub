@@ -15,11 +15,11 @@ public class Commit extends PersistentObject {
     @Column
     private String hash;
 
-    @BsonIgnore
     @ManyToOne
     @JoinColumn(name="user_id")
     private User author;
 
+    @BsonIgnore
     @OneToMany(/*fetch = FetchType.LAZY,*/mappedBy = "commit", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<File> files = new ArrayList<File>();
 

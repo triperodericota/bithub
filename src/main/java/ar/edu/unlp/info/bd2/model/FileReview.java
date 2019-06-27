@@ -12,10 +12,10 @@ public class FileReview extends PersistentObject {
 
     @ManyToOne
     @JoinColumn(name="file_id")
-    private File file;
+    private File reviewedFile;
 
     @Column
-    private Integer line;
+    private Integer lineNumber;
 
     @Column
     private String comment;
@@ -25,8 +25,8 @@ public class FileReview extends PersistentObject {
 
     public FileReview(Review aReview, File aFile, Integer lineNumber, String aComment){
         this.setReview(aReview);
-        this.setFile(aFile);
-        this.setLine(lineNumber);
+        this.setReviewedFile(aFile);
+        this.setLineNumber(lineNumber);
         this.setComment(aComment);
     }
 
@@ -39,19 +39,19 @@ public class FileReview extends PersistentObject {
     }
 
     public File getReviewedFile() {
-        return file;
+        return reviewedFile;
     }
 
-    public void setFile(File file) {
-        this.file = file;
+    public void setReviewedFile(File reviewedFile) {
+        this.reviewedFile = reviewedFile;
     }
 
     public Integer getLineNumber() {
-        return line;
+        return lineNumber;
     }
 
-    public void setLine(Integer line) {
-        this.line = line;
+    public void setLineNumber(Integer lineNumber) {
+        this.lineNumber = lineNumber;
     }
 
     public String getComment() {

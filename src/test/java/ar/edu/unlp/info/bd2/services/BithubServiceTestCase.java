@@ -2,24 +2,13 @@ package ar.edu.unlp.info.bd2.services;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import ar.edu.unlp.info.bd2.config.AppConfig;
-import ar.edu.unlp.info.bd2.config.HibernateConfiguration;
-import ar.edu.unlp.info.bd2.config.MongoDBConfiguration;
 import ar.edu.unlp.info.bd2.model.*;
 import java.util.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import org.springframework.transaction.annotation.Transactional;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(
-    classes = {AppConfig.class, HibernateConfiguration.class, MongoDBConfiguration.class},
-    loader = AnnotationConfigContextLoader.class)
 @Transactional
 @Rollback(true)
 public abstract class BithubServiceTestCase<T> {
@@ -34,7 +23,7 @@ public abstract class BithubServiceTestCase<T> {
   public void setUp() {
     this.service = this.getService();
   }
-/*
+
   @Test
   public void testCreateBranchAndCommit() {
     Branch master = this.service.createBranch("master");
@@ -54,8 +43,8 @@ public abstract class BithubServiceTestCase<T> {
     File file2 = this.service.createFile("print(\"Hello world\")", "Main.py");
 
     Commit commit =
-            this.service.createCommit(
-                    "Initial commit", "ab4f19z", user, Arrays.asList(file1, file2), master);
+        this.service.createCommit(
+            "Initial commit", "ab4f19z", user, Arrays.asList(file1, file2), master);
     assertEquals("Initial commit", commit.getMessage());
     assertEquals("ab4f19z", commit.getHash());
     assertNotNull(this.getId(commit));
@@ -66,7 +55,7 @@ public abstract class BithubServiceTestCase<T> {
     assertEquals(2, commitFromDb.get().getFiles().size());
 
     assertEquals(
-            "System.out.println(\"Hello world\");", commitFromDb.get().getFiles().get(0).getContent());
+        "System.out.println(\"Hello world\");", commitFromDb.get().getFiles().get(0).getContent());
     assertEquals("Main.java", commitFromDb.get().getFiles().get(0).getFilename());
 
     assertEquals("print(\"Hello world\")", commitFromDb.get().getFiles().get(1).getContent());
@@ -98,7 +87,7 @@ public abstract class BithubServiceTestCase<T> {
 
     assertFalse(this.service.getTagByName("fakeTag123").isPresent());
   }
-*/
+
   @Test
   void testCreateReview() throws BithubException {
     Branch master = this.service.createBranch("master");
@@ -106,18 +95,21 @@ public abstract class BithubServiceTestCase<T> {
 
     User user1 = this.service.createUser("user1@bithub.bd2.info.unlp.edu.ar", "User One");
     User user2 = this.service.createUser("user2@bithub.bd2.info.unlp.edu.ar", "User Two");
-/*
+
     File fileInMasterBranch =
-            this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
+        this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
     this.service.createCommit(
-            "Initial commit", "ab4f19z", user1, Collections.singletonList(fileInMasterBranch), master);
-  */
+        "Initial commit", "ab4f19z", user1, Collections.singletonList(fileInMasterBranch), master);
+
     File fileInDevelopBranch =
-            this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
+        this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
     this.service.createCommit(
-            "Initial commit","ab4f19z", user1, Collections.singletonList(fileInDevelopBranch), develop);
-  }
-/*
+        "Initial commit",
+        "ab4f19z",
+        user1,
+        Collections.singletonList(fileInDevelopBranch),
+        develop);
+
     Review review = this.service.createReview(master, user2);
     assertNotNull(this.getId(review));
     assertEquals(this.getId(master), this.getId(review.getBranch()));
@@ -150,7 +142,7 @@ public abstract class BithubServiceTestCase<T> {
     assertEquals(fileReview.getComment(), freshReview.get().getReviews().get(0).getComment());
     assertEquals(fileReview.getLineNumber(), freshReview.get().getReviews().get(0).getLineNumber());
   }
-
+/*
   @Test
   void testGetCommitsFromUser() {
     Branch master = this.service.createBranch("master");
@@ -182,10 +174,10 @@ public abstract class BithubServiceTestCase<T> {
     assertEquals(2, commits.size());
     assertEquals(
         1, commits.stream().filter(s -> this.getId(s).equals(this.getId(commitInDevelop))).count());
-      assertEquals(
+    assertEquals(
         1, commits.stream().filter(s -> this.getId(s).equals(this.getId(commitInMaster))).count());
-  }*/
-/*
+  }
+
   @Test
   void testGetTotalNumberOfCommitsPerUser() {
     Branch master = this.service.createBranch("master");
@@ -249,5 +241,5 @@ public abstract class BithubServiceTestCase<T> {
         users.stream().anyMatch(u -> u.getEmail().equals("user2@bithub.bd2.info.unlp.edu.ar")));
     assertFalse(
         users.stream().anyMatch(u -> u.getEmail().equals("user3@bithub.bd2.info.unlp.edu.ar")));
-  }
-*/}
+  }*/
+}
