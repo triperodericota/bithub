@@ -87,7 +87,7 @@ public abstract class BithubServiceTestCase<T> {
 
     assertFalse(this.service.getTagByName("fakeTag123").isPresent());
   }
-/*
+
   @Test
   void testCreateReview() throws BithubException {
     Branch master = this.service.createBranch("master");
@@ -97,18 +97,18 @@ public abstract class BithubServiceTestCase<T> {
     User user2 = this.service.createUser("user2@bithub.bd2.info.unlp.edu.ar", "User Two");
 
     File fileInMasterBranch =
-        this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
+            this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
     this.service.createCommit(
-        "Initial commit", "ab4f19z", user1, Collections.singletonList(fileInMasterBranch), master);
+            "Initial commit", "ab4f19z", user1, Collections.singletonList(fileInMasterBranch), master);
 
     File fileInDevelopBranch =
-        this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
+            this.service.createFile("System.out.println(\"Hello wrld\");", "Main.java");
     this.service.createCommit(
-        "Initial commit",
-        "ab4f19z",
-        user1,
-        Collections.singletonList(fileInDevelopBranch),
-        develop);
+            "Initial commit",
+            "ab4f19z",
+            user1,
+            Collections.singletonList(fileInDevelopBranch),
+            develop);
 
     Review review = this.service.createReview(master, user2);
     assertNotNull(this.getId(review));
@@ -141,8 +141,8 @@ public abstract class BithubServiceTestCase<T> {
     assertEquals(this.getId(fileReview), this.getId(freshReview.get().getReviews().get(0)));
     assertEquals(fileReview.getComment(), freshReview.get().getReviews().get(0).getComment());
     assertEquals(fileReview.getLineNumber(), freshReview.get().getReviews().get(0).getLineNumber());
-  }*/
-/*
+  }
+
   @Test
   void testGetCommitsFromUser() {
     Branch master = this.service.createBranch("master");
@@ -241,5 +241,5 @@ public abstract class BithubServiceTestCase<T> {
         users.stream().anyMatch(u -> u.getEmail().equals("user2@bithub.bd2.info.unlp.edu.ar")));
     assertFalse(
         users.stream().anyMatch(u -> u.getEmail().equals("user3@bithub.bd2.info.unlp.edu.ar")));
-  }*/
+  }
 }
