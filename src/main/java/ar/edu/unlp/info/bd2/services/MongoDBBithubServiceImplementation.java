@@ -4,6 +4,7 @@ import ar.edu.unlp.info.bd2.mongo.Association;
 import ar.edu.unlp.info.bd2.repositories.MongoDBBithubRepository;
 import com.mongodb.Block;
 import com.mongodb.client.FindIterable;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import ar.edu.unlp.info.bd2.model.*;
@@ -107,33 +108,45 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public List<Commit> getAllCommitsForUser(ObjectId userId) {
-        /*Optional<User> user = repository.getDocument("_id", userId, "User");*/
-        System.out.println(userId);
-        FindIterable<Association> commitsForUser = repository.getAssociations("destination", userId, "commit_author");
-        List<ObjectId> commits_ids = new ArrayList<ObjectId>();
-        List<Commit> commits = new ArrayList<Commit>();;
-       /* Block<Association> retrieveCommits;
-
-        retrieveCommits = new Block<Association>() {
-            @Override
-            public void apply(final Association commit_author){
-                commits_ids.add(commit_author.getSource());
-            }
-        };
-*/
-        commitsForUser.forEach((Block<Association>) commit_author -> commits_ids.add(commit_author.getSource()));
-        System.out.println(commits_ids.toString());
-        return commits;
+        Iterator commits = repository.findCommitsForUser(userId).iterator();
+        List<Commit> toReturn = new ArrayList<Commit>();
+        while(commits.hasNext()){
+            Document doc = (Document) commits.next();
+            Commit c = (Commit) repository.getDocument("_id", doc.get("source"),"Commit").first();
+            toReturn.add(c);
+        }
+        return toReturn;
     }
 
     @Override
     public Map getCommitCountByUser() {
-        return null;
+        Map<ObjectId,Long> toReturn = new HashMap<>();
+        Iterator commitsPerUser = repository.computedTotalCommitsPerUser().iterator();
+        while(commitsPerUser.hasNext()){
+            Document doc = (Document) commitsPerUser.next();
+            ObjectId userId = (ObjectId)doc.get("_id");
+            Long totalCommits = ((Integer) doc.get("totalCommits")).longValue();
+            toReturn.put(userId,totalCommits);
+        }
+        return toReturn;
     }
 
     @Override
     public List<User> getUsersThatCommittedInBranch(String branchName) throws BithubException {
-        return null;
+        Optional<Branch> branch = this.getBranchByName(branchName);
+        List<User> users = new ArrayList<>();
+        if(branch.isPresent()){
+            Iterator usersInBranch = repository.usersThatCommitedInBranch(branchName).iterator();
+            while (usersInBranch.hasNext()){
+                Document doc = (Document) usersInBranch.next();
+                Document userId = (Document) doc.get("_id");
+                User user = (User) repository.getDocument("_id", userId.get("_id"),"User").first();
+                users.add(user);
+            }
+        }else {
+            throw new BithubException("The branch don't exist.");
+        }
+        return users;
     }
 
     @Override

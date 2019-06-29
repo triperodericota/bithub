@@ -140,7 +140,14 @@ public class SpringDataBithubService implements BithubService<Long> {
 
     @Override
     public List<User> getUsersThatCommittedInBranch(String branchName) throws BithubException {
-        return null;
+        Optional<Branch> branchOpt= this.getBranchByName(branchName);
+        if(branchOpt.isPresent()){
+            Branch b = branchOpt.get();
+            return(commitRepository.findUsersByCommits(b));
+        }else{
+            throw new BithubException("The branch don't exist.");
+        }
+
     }
 
     @Override
