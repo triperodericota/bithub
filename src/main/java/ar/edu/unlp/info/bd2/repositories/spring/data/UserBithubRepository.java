@@ -13,6 +13,4 @@ public interface UserBithubRepository extends CrudRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
 
-    @Query("select u.id from User u")
-    List<Long> findIdForUsers();
 }

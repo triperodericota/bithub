@@ -5,10 +5,7 @@ import ar.edu.unlp.info.bd2.repositories.spring.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class SpringDataBithubService implements BithubService<Long> {
 
@@ -128,12 +125,12 @@ public class SpringDataBithubService implements BithubService<Long> {
 
     @Override
     public Map<Long, Long> getCommitCountByUser() {
-        List<Long> ids= userRepository.findIdForUsers(); //Obtengo todos los ids de los usuarios.
+        Iterator commitCount_User= commitRepository.getCommitsCountPerUser().iterator();
         Map<Long, Long> map= new HashMap<>();
-        for (Long id: ids){
-            Optional<User> u= userRepository.findById(id); //Por cada id, traigo el usuario, junto con su lista de commits. PREGUNTAR SI HAY MANERA MAS EFICIENTE.
-            Long count= new Long (u.get().getCommits().size());
-            map.put(id,count);
+        while (commitCount_User.hasNext()){
+            Object[] tuple = (Object[]) commitCount_User.next();
+            User user = (User) tuple[0];
+            map.put(user.getId(), (Long) tuple[1]);
         }
         return map;
     }
