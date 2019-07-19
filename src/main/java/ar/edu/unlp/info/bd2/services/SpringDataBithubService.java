@@ -48,15 +48,12 @@ public class SpringDataBithubService implements BithubService<Long> {
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> files, Branch branch) {
         Commit newCommit = new Commit(description,hash,author,files,branch);
-        commitRepository.save(newCommit);
         for (File file : files) {
             file.setCommit(newCommit);
         }
-        fileRepository.saveAll(files);
         branch.addCommit(newCommit);
-        branchRepository.save(branch);
         author.addCommit(newCommit);
-        userRepository.save(author);
+        commitRepository.save(newCommit);
         return newCommit;
     }
 
@@ -101,11 +98,9 @@ public class SpringDataBithubService implements BithubService<Long> {
     public FileReview addFileReview(Review review, File file, int lineNumber, String comment) throws BithubException {
         if (file.getCommit().getBranch().equals(review.getBranch())) {
             FileReview newFileReview = new FileReview(review,file,lineNumber,comment);
-            fileReviewRepository.save(newFileReview);
             file.addReview(newFileReview);
             review.addReview(newFileReview);
-            fileRepository.save(file);
-            reviewRepository.save(review);
+            fileReviewRepository.save(newFileReview);
             return newFileReview;
         } else {
             throw new BithubException("The review's branch must be equals to file's branch.");
@@ -144,7 +139,6 @@ public class SpringDataBithubService implements BithubService<Long> {
         }else{
             throw new BithubException("The branch don't exist.");
         }
-
     }
 
     @Override

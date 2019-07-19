@@ -2,8 +2,7 @@ package ar.edu.unlp.info.bd2.services;
 
 import ar.edu.unlp.info.bd2.mongo.Association;
 import ar.edu.unlp.info.bd2.repositories.MongoDBBithubRepository;
-import com.mongodb.Block;
-import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCursor;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<User> getUserByEmail(String email) {
-        return Optional.ofNullable((User) repository.getDocument("email", email, "User").first());
+        return repository.getDocument("email", email, "User");
     }
 
     @Override
@@ -53,16 +52,17 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Commit> getCommitByHash(String commitHash) {
-        Optional OptCommit = Optional.ofNullable((repository.getDocument("hash",commitHash, "Commit")).first());
+        Optional OptCommit = repository.getDocument("hash",commitHash, "Commit");
         if(OptCommit.isPresent()) {
             Commit commit = (Commit) OptCommit.get();
             List files = new ArrayList();
-            repository.getDocument("commit._id", commit.getObjectId(), "File").into(files);
+            repository.getDocuments("commit._id", commit.getObjectId(), "File").into(files);
             commit.setFiles(files);
             return (Optional.ofNullable(commit));
         }else {
             return OptCommit;
         }
+
     }
 
     @Override
@@ -74,7 +74,7 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Tag> getTagByName(String tagName) {
-        return Optional.ofNullable((Tag) repository.getDocument("name", tagName, "Tag").first());
+        return repository.getDocument("name", tagName, "Tag");
     }
 
     @Override
@@ -99,20 +99,20 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     @Override
     public Optional<Review> getReviewById(ObjectId id) {
-        Review review= (Review) repository.getDocument("_id",id, "Review").first();
+        Review review= (Review) repository.getDocument("_id",id, "Review").get();
         List filereviews= new ArrayList();
-        repository.getDocument("review._id",id,"FileReview").into(filereviews);
+        repository.getDocuments("review._id",id,"FileReview").into(filereviews);
         review.setReviews(filereviews);
         return Optional.of(review);
     }
 
     @Override
     public List<Commit> getAllCommitsForUser(ObjectId userId) {
-        Iterator commits = repository.findCommitsForUser(userId).iterator();
+        MongoCursor commits = repository.findCommitsForUser(userId).iterator();
         List<Commit> toReturn = new ArrayList<Commit>();
         while(commits.hasNext()){
-            Document doc = (Document) commits.next();
-            Commit c = (Commit) repository.getDocument("_id", doc.get("source"),"Commit").first();
+            Association doc =  (Association) commits.next();
+            Commit c = (Commit) repository.getDocument("_id", doc.getSource(),"Commit").get();
             toReturn.add(c);
         }
         return toReturn;
@@ -121,11 +121,11 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     @Override
     public Map getCommitCountByUser() {
         Map<ObjectId,Long> toReturn = new HashMap<>();
-        Iterator commitsPerUser = repository.computedTotalCommitsPerUser().iterator();
+        Iterator<Document> commitsPerUser = repository.computedTotalCommitsPerUser();
         while(commitsPerUser.hasNext()){
-            Document doc = (Document) commitsPerUser.next();
+            Document doc = commitsPerUser.next();
             ObjectId userId = (ObjectId)doc.get("_id");
-            Long totalCommits = ((Integer) doc.get("totalCommits")).longValue();
+            Long totalCommits = ((Integer) doc.get("count")).longValue();
             toReturn.put(userId,totalCommits);
         }
         return toReturn;
@@ -134,24 +134,16 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
     @Override
     public List<User> getUsersThatCommittedInBranch(String branchName) throws BithubException {
         Optional<Branch> branch = this.getBranchByName(branchName);
-        List<User> users = new ArrayList<>();
         if(branch.isPresent()){
-            Iterator usersInBranch = repository.usersThatCommitedInBranch(branchName).iterator();
-            while (usersInBranch.hasNext()){
-                Document doc = (Document) usersInBranch.next();
-                Document userId = (Document) doc.get("_id");
-                User user = (User) repository.getDocument("_id", userId.get("_id"),"User").first();
-                users.add(user);
-            }
+            return repository.usersThatCommitedInBranch(branchName);
         }else {
             throw new BithubException("The branch don't exist.");
         }
-        return users;
     }
 
     @Override
     public Optional<Branch> getBranchByName(String branchName) {
-        return Optional.ofNullable((Branch) repository.getDocument("name",branchName,"Branch").first());
+        return repository.getDocument("name",branchName,"Branch");
     }
 
     @Override
@@ -172,8 +164,3 @@ public class MongoDBBithubServiceImplementation implements BithubService<ObjectI
 
     }
 }
-
-/*
-    CREAR UNA COLECCION POR CADA TIPO DE ASOCIACIÓN: EJ => COMMIT-FILE, BRANCH-COMMIT
-
- */

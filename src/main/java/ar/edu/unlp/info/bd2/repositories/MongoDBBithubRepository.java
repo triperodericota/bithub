@@ -8,6 +8,8 @@ import static com.mongodb.client.model.Filters.eq;
 import ar.edu.unlp.info.bd2.model.Tag;
 
 import static com.mongodb.client.model.Filters.exists;
+import static com.mongodb.client.model.Projections.fields;
+import static com.mongodb.client.model.Projections.include;
 import static com.mongodb.client.model.Updates.push;
 
 import com.mongodb.client.model.ReplaceOptions;
@@ -73,18 +75,16 @@ public class MongoDBBithubRepository {
         MongoCollection collection = this.retrieveAssociationCollection(associationName);
         collection.insertOne(association);
     }
-    public FindIterable getDocument(String field,Object parameter,String modelName){
+
+    public Optional getDocument(String field,Object parameter,String modelName){
+        MongoCollection collection = this.retrieveCollection(modelName);
+        return Optional.ofNullable(collection.find(eq(field,parameter)).first());
+    }
+
+    public FindIterable getDocuments(String field,Object parameter,String modelName){
         MongoCollection collection = this.retrieveCollection(modelName);
         return collection.find(eq(field,parameter));
     }
-
-  /*public void newDocument(PersistentObject olderDocument, String className){
-      MongoCollection collection = this.retrieveCollection(className);
-      if(olderDocument.getId()!=null){
-          collection.replaceOne(eq("objectId", olderDocument.getId()), olderDocument, new ReplaceOptions().upsert(false));
-      }else{
-          collection.insertOne(olderDocument);
-      }*/
 
     public FindIterable<Association> getAssociations(String field,Object parameter, String associationName){
         MongoCollection collection = this.retrieveAssociationCollection(associationName);
@@ -96,35 +96,31 @@ public class MongoDBBithubRepository {
         collection.replaceOne(eq("_id", updatedDocument.getObjectId()), updatedDocument);
     }
 
-    public FindIterable findCommitsForUser(ObjectId userId){
+    public AggregateIterable findCommitsForUser(ObjectId userId){
         MongoCollection collection = this.retrieveAssociationCollection("commit_author");
-        collection.aggregate(Arrays.asList(
+        return collection.aggregate(Arrays.asList(
                 Aggregates.match(Filters.eq("destination", userId)),
-                /*Aggregates.lookup("commit", "source", "_id", "commit_data"),*/
-                Aggregates.project(Projections.fields(Projections.include("source"),Projections.excludeId())),
-                Aggregates.out("commitsForUser"))).toCollection();
-        return this.getDB().getCollection("commitsForUser").find();
+                Aggregates.project(fields(include("source"),Projections.excludeId()))));
     }
 
-    public FindIterable computedTotalCommitsPerUser(){
+    public Iterator<Document> computedTotalCommitsPerUser(){
         MongoCollection collection = this.retrieveAssociationCollection("commit_author");
-        collection.aggregate(Arrays.asList(
-                Aggregates.group("$destination", Accumulators.sum("totalCommits",1)),
-                Aggregates.project(Projections.fields(Projections.include("destination","totalCommits"))),
-                Aggregates.out("commitsPerUser"))).toCollection();
-        return this.getDB().getCollection("commitsPerUser").find();
+        return collection.aggregate(Arrays.asList(
+                new Document("$group", new Document("_id", "$destination").append("count", new Document("$sum", 1)))
+        ), Document.class).iterator();
     }
 
-    public FindIterable usersThatCommitedInBranch(String branchName){
+    public List<User> usersThatCommitedInBranch(String branchName){
         MongoCollection collection = this.retrieveCollection("Branch");
-        collection.aggregate(Arrays.asList(
-                Aggregates.match(Filters.eq("name", branchName)),
-                Aggregates.unwind("$commits"),
-                Aggregates.group("$commits.author"),
-                Aggregates.project(Projections.fields(Projections.include("_id._id"))),
-                Aggregates.out("usersInBranch"))).toCollection();
-        return this.getDB().getCollection("usersInBranch").find();
+        AggregateIterable<User> result = collection.aggregate(Arrays.asList(
+                match(eq("name", branchName)),
+                lookup("commit", "commits._id", "_id", "usersInBranch"),
+                lookup("commit_author","commits._id", "source", "usersInBranch"),
+                lookup("user","usersInBranch.destination", "_id", "usersInBranch"),
+                unwind("$usersInBranch"),
+                replaceRoot("$usersInBranch")), User.class);
+
+        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(result.iterator(),0),false).collect(Collectors.toList());
+
     }
-
-
 }
