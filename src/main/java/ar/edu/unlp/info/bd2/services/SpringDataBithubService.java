@@ -5,10 +5,7 @@ import ar.edu.unlp.info.bd2.repositories.spring.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class SpringDataBithubService implements BithubService<Long> {
 
@@ -51,15 +48,12 @@ public class SpringDataBithubService implements BithubService<Long> {
     @Override
     public Commit createCommit(String description, String hash, User author, List<File> files, Branch branch) {
         Commit newCommit = new Commit(description,hash,author,files,branch);
-        commitRepository.save(newCommit);
         for (File file : files) {
             file.setCommit(newCommit);
         }
-        fileRepository.saveAll(files);
         branch.addCommit(newCommit);
-        branchRepository.save(branch);
         author.addCommit(newCommit);
-        userRepository.save(author);
+        commitRepository.save(newCommit);
         return newCommit;
     }
 
@@ -104,11 +98,9 @@ public class SpringDataBithubService implements BithubService<Long> {
     public FileReview addFileReview(Review review, File file, int lineNumber, String comment) throws BithubException {
         if (file.getCommit().getBranch().equals(review.getBranch())) {
             FileReview newFileReview = new FileReview(review,file,lineNumber,comment);
-            fileReviewRepository.save(newFileReview);
             file.addReview(newFileReview);
             review.addReview(newFileReview);
-            fileRepository.save(file);
-            reviewRepository.save(review);
+            fileReviewRepository.save(newFileReview);
             return newFileReview;
         } else {
             throw new BithubException("The review's branch must be equals to file's branch.");
@@ -128,12 +120,12 @@ public class SpringDataBithubService implements BithubService<Long> {
 
     @Override
     public Map<Long, Long> getCommitCountByUser() {
-        List<Long> ids= userRepository.findIdForUsers(); //Obtengo todos los ids de los usuarios.
+        Iterator commitCount_User= commitRepository.getCommitsCountPerUser().iterator();
         Map<Long, Long> map= new HashMap<>();
-        for (Long id: ids){
-            Optional<User> u= userRepository.findById(id); //Por cada id, traigo el usuario, junto con su lista de commits. PREGUNTAR SI HAY MANERA MAS EFICIENTE.
-            Long count= new Long (u.get().getCommits().size());
-            map.put(id,count);
+        while (commitCount_User.hasNext()){
+            Object[] tuple = (Object[]) commitCount_User.next();
+            User user = (User) tuple[0];
+            map.put(user.getId(), (Long) tuple[1]);
         }
         return map;
     }
@@ -147,7 +139,6 @@ public class SpringDataBithubService implements BithubService<Long> {
         }else{
             throw new BithubException("The branch don't exist.");
         }
-
     }
 
     @Override

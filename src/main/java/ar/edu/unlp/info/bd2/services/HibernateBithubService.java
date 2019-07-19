@@ -6,14 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 
 @Service
-@Transactional
 public class HibernateBithubService implements BithubService<Long>{
 
     @Autowired
@@ -25,6 +21,7 @@ public class HibernateBithubService implements BithubService<Long>{
     }
 
     @Override
+    @Transactional
     public User createUser(String email, String name) {
         User newUser=new User(email, name);
         repository.createUser(newUser);
@@ -32,11 +29,13 @@ public class HibernateBithubService implements BithubService<Long>{
     }
 
     @Override
+    @Transactional
     public Optional<User> getUserByEmail(String email) {
         return repository.getUserByEmail(email);
     }
 
     @Override
+    @Transactional
     public Branch createBranch(String name) {
         Branch newBranch= new Branch(name);
         repository.createBranch(newBranch);
@@ -44,6 +43,7 @@ public class HibernateBithubService implements BithubService<Long>{
     }
 
     @Override
+    @Transactional
     public Commit createCommit(String description, String hash, User author, List<File> files, Branch branch) {
         Commit newCommit = new Commit(description, hash, author, files, branch);
         repository.createCommit(newCommit);
@@ -56,6 +56,7 @@ public class HibernateBithubService implements BithubService<Long>{
     }
 
     @Override
+    @Transactional
     public Tag createTagForCommit(String commitHash, String name) throws BithubException {
         Optional<Commit> commitOptional= this.getCommitByHash(commitHash);
         if(commitOptional.isPresent()) {
@@ -70,11 +71,13 @@ public class HibernateBithubService implements BithubService<Long>{
     }
 
     @Override
+    @Transactional
     public Optional<Commit> getCommitByHash(String commitHash) {
         return repository.getCommitByHash(commitHash);
     }
 
     @Override
+    @Transactional
     public File createFile(String content, String name) {
         File newFile= new File(content, name);
         repository.createFile(newFile);
@@ -82,11 +85,13 @@ public class HibernateBithubService implements BithubService<Long>{
     }
 
     @Override
+    @Transactional
     public Optional<Tag> getTagByName(String tagName) {
         return repository.getTagByName(tagName);
     }
 
     @Override
+    @Transactional
     public Review createReview(Branch branch, User user) {
         Review newReview = new Review(branch, user);
         repository.createReview(newReview);
@@ -94,6 +99,7 @@ public class HibernateBithubService implements BithubService<Long>{
     }
 
     @Override
+    @Transactional
     public FileReview addFileReview(Review review, File file, int lineNumber, String comment) throws BithubException {
         if(file.getCommit().getBranch().equals(review.getBranch())) {
             FileReview newFileReview = new FileReview(review, file, lineNumber, comment);
@@ -108,29 +114,33 @@ public class HibernateBithubService implements BithubService<Long>{
     }
 
     @Override
+    @Transactional
     public Optional<Review> getReviewById(Long id) {
         return repository.getReviewById(id);
     }
 
     @Override
+    @Transactional
     public List<Commit> getAllCommitsForUser(Long userId) {
         User u= repository.getUserForId(userId);
         return u.getCommits();
     }
 
     @Override
+    @Transactional
     public Map<Long, Long> getCommitCountByUser() {
-        List<Long> ids= repository.getIdsForUsers(); //Obtengo todos los ids de los usuarios.
+        Iterator commitCount_User= repository.getCommitsCountPerUser().iterator();
         Map<Long, Long> map= new HashMap<>();
-        for (Long id: ids){
-            User u= repository.getUserForId(id); //Por cada id, traigo el usuario, junto con su lista de commits. PREGUNTAR SI HAY MANERA MAS EFICIENTE.
-            Long count= new Long (u.getCommits().size());
-            map.put(id,count);
+        while (commitCount_User.hasNext()){
+            Object[] tuple = (Object[]) commitCount_User.next();
+            User user = (User) tuple[0];
+            map.put(user.getId(), (Long) tuple[1]);
         }
         return map;
     }
 
     @Override
+    @Transactional
     public List<User> getUsersThatCommittedInBranch(String branchName) throws BithubException {
         Optional<Branch> branchOpt= this.getBranchByName(branchName);
         if(branchOpt.isPresent()){
@@ -142,6 +152,7 @@ public class HibernateBithubService implements BithubService<Long>{
     }
 
     @Override
+    @Transactional
     public Optional<Branch> getBranchByName(String branchName) {
         return repository.getBranchByName(branchName);
     }

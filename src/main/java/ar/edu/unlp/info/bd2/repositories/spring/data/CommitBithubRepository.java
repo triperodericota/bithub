@@ -17,4 +17,7 @@ public interface CommitBithubRepository extends CrudRepository<Commit,Long> {
 
     @Query("select c.author from Commit c where c.branch = :branch group by c.author")
     List<User> findUsersByCommits(@Param("branch") Branch branch);
+
+    @Query("select c.author, count(c.id) from Commit c group by c.author")
+    List getCommitsCountPerUser();
 }
