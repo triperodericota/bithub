@@ -103,6 +103,19 @@
       <version>2.0.11.RELEASE</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.elasticsearch.client</groupId>
+      <artifactId>elasticsearch-rest-high-level-client</artifactId>
+      <version>7.3.1</version>
+    </dependency>
+
+    <!--  Jackson ObjectMapper class – and how to serialize Java objects into JSON and deserialize JSON string into Java objects -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.9.8</version>
+    </dependency>
+
   </dependencies>
 
   <build>
