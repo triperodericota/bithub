@@ -4,6 +4,7 @@ import ar.edu.unlp.info.bd2.model.*;
 import ar.edu.unlp.info.bd2.repositories.ElasticsearchBithubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -17,7 +18,14 @@ public class ElasticsearchService implements BithubService {
 
     @Override
     public User createUser(String email, String name) {
-        return null;
+        User user = new User(email,name);
+        try {
+            String indexResponseInfo = repository.createUser(user);
+            System.out.println(indexResponseInfo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 
     @Override
