@@ -128,7 +128,9 @@ public class ElasticsearchBithubRepository {
         }
         /* access to the returned document */
         SearchHits hits = searchResponse.getHits();
-        Commit toReturn = objectMapper.readValue((JsonParser) hits.getAt(0).getSourceAsMap(), Commit.class);
+        System.out.println(hits.getTotalHits());
+        String commitString = hits.getAt(0).getSourceAsString();
+        Commit toReturn = objectMapper.readValue(commitString, Commit.class);
         System.out.println("Commit with hash " + commitHash +": " + toReturn.getMessage());
         return Optional.of(toReturn);
     }

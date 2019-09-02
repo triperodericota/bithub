@@ -5,6 +5,7 @@ import ar.edu.unlp.info.bd2.repositories.ElasticsearchBithubRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
+import java.security.cert.PKIXRevocationChecker;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -62,18 +63,20 @@ public class ElasticsearchService implements BithubService {
 
     @Override
     public Optional<Commit> getCommitByHash(String commitHash) {
+        Optional<Commit> commit = Optional.empty();
         try {
-            return repository.findCommitByHash(commitHash);
+            commit = repository.findCommitByHash(commitHash);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return commit;
     }
 
     @Override
     public File createFile(String name, String content) {
         File file = new File(content,name);
         try {
-            String indexResponseInfo = repository.createDocument(file, "users");
+            String indexResponseInfo = repository.createDocument(file, "files");
             System.out.println(indexResponseInfo);
         } catch (IOException e) {
             e.printStackTrace();
