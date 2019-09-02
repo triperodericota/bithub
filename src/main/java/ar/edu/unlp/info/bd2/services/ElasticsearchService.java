@@ -20,7 +20,7 @@ public class ElasticsearchService implements BithubService {
     public User createUser(String email, String name) {
         User user = new User(email,name);
         try {
-            String indexResponseInfo = repository.createUser(user);
+            String indexResponseInfo = repository.createDocument(user, "users");
             System.out.println(indexResponseInfo);
         } catch (IOException e) {
             e.printStackTrace();
@@ -35,22 +35,50 @@ public class ElasticsearchService implements BithubService {
 
     @Override
     public Branch createBranch(String name) {
-        return null;
+        Branch branch = new Branch(name);
+        try {
+            String indexResponseInfo = repository.createDocument(branch, "branchs");
+            System.out.println(indexResponseInfo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return branch;
     }
 
     @Override
     public Tag createTagForCommit(String commitHash, String name) throws BithubException {
+        Commit commit = this.getCommitByHash(commitHash).get();
+        Tag tag = new Tag(commitHash, name, commit);
+        try {
+            String indexResponseInfo = repository.createDocument(tag, "tags");
+            System.out.println(indexResponseInfo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
     @Override
     public Optional<Commit> getCommitByHash(String commitHash) {
-        return Optional.empty();
+        try {
+            return repository.findCommitByHash(commitHash);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public File createFile(String name, String content) {
-        return null;
+        File file = new File(content,name);
+        try {
+            String indexResponseInfo = repository.createDocument(file, "users");
+            System.out.println(indexResponseInfo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
     }
 
     @Override
@@ -95,6 +123,13 @@ public class ElasticsearchService implements BithubService {
 
     @Override
     public Commit createCommit(String description, String hash, User author, List list, Branch branch) {
-        return null;
+        Commit commit = new Commit(description, hash, author, list, branch);
+        try {
+            String indexResponseInfo = repository.createDocument(commit, "commits");
+            System.out.println(indexResponseInfo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return commit;
     }
 }

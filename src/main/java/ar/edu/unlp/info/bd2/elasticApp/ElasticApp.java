@@ -11,6 +11,7 @@ public class ElasticApp {
 
         elasticService.createUser("user@bithub.bd2.info.unlp.edu.ar", "User");
 
+        elasticService.createBranch("Master");
 
 
     }
